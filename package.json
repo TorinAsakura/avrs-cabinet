@@ -1,0 +1,55 @@
+{
+  "name": "avrs-cabinet",
+  "version": "0.1.0",
+  "description": "Aversis System Cabinet Repository",
+  "scripts": {
+    "dev": "babel-node bin/dev.js",
+    "lint": "eslint bin config src -f node_modules/eslint-friendly-formatter"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AtlantisUnited/avrs-cabinet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AtlantisUnited/avrs-cabinet/issues"
+  },
+  "homepage": "https://github.com/AtlantisUnited/avrs-cabinet#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "babel-cli": "^6.11.4",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^3.1.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-friendly-formatter": "^2.0.6",
+    "eslint-html-reporter": "^0.5.2",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^5.2.2",
+    "extract-text-webpack-plugin": "^2.0.0-beta.3",
+    "html-webpack-plugin": "^2.22.0",
+    "postcss-loader": "^0.9.1",
+    "quantum": "git://github.com/monstrs/quantum.git#feature/classnames",
+    "react-hot-loader": "^3.0.0-beta.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.1.0-beta.20",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.2"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.0",
+    "redux": "^3.5.2",
+    "redux-router": "^2.1.1"
+  }
+}

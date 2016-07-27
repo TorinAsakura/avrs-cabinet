@@ -1,0 +1,22 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "root": true,
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "globals": {},
+  "rules": {
+    "semi": [2, "never"],
+    "max-len": [2, 120, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false
+    }],
+    "jsx-quotes": [2, "prefer-single"],
+    "react/prop-types": 0,
+    "jsx-a11y/img-has-alt": 0,
+    "global-require": 0,
+    "import/no-unresolved": 0,
+  }
+}
