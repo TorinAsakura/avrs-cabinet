@@ -1,9 +1,34 @@
 pipeline:
-  build:
+  install:
     image: node:${NODE_VERSION}
     commands:
       - npm install
+
+  lint:
+    image: node:${NODE_VERSION}
+    commands:
       - npm run lint
+
+  build:
+    image: node:${NODE_VERSION}
+    commands:
+      - npm run build
+
+  docker:
+    image: registry.monstrs.net:5000/drone-docker
+    privileged: true
+    registry: registry.monstrs.net:5000
+    repo: registry.monstrs.net:5000/cabinet
+    tag: [ "latest" ]
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
+
+  ssh:
+    image: registry.monstrs.net:5000/drone-ssh
+    host: 193.124.177.25
+    timeout: 30
+    commands:
+      - systemctl restart cabinet
 
 matrix:
   NODE_VERSION:

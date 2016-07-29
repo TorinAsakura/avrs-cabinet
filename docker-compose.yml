@@ -23,3 +23,8 @@ services:
     entrypoint: npm run dev
     ports:
       - "3030:3030"
+
+  server:
+    build: ./
+    ports:
+      - "3000:3000"
