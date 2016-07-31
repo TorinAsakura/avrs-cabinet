@@ -24,6 +24,13 @@ services:
     ports:
       - "3030:3030"
 
+  build:
+    image: node
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    entrypoint: npm run build
+
   server:
     build: ./
     ports:
