@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     fontFamily: '"Ubuntu",sans-serif',
     fontWeight: 400,
     lineHeight: 1.1,
+    color: '#000000',
   },
   'size=xxlarge': {
     fontSize: '36px',

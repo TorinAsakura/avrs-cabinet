@@ -28,6 +28,7 @@ RouteLink.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
+    PropTypes.array,
   ]),
   to: PropTypes.string,
   align: PropTypes.string,
