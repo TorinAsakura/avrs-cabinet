@@ -6,7 +6,8 @@
     "dev": "babel-node bin/dev.js",
     "build": "babel-node bin/build.js",
     "server": "babel-node bin/server.js",
-    "lint": "eslint bin config src -f node_modules/eslint-friendly-formatter"
+    "lint": "eslint bin config src -f node_modules/eslint-friendly-formatter",
+    "docs:dev": "docsnow server --summary src/ui/Readme.md --output /ui/"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "react-router": "^2.6.0",
     "redux": "^3.5.2",
     "redux-router": "^2.1.1",
+    "serve-static": "^1.11.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-beta.20",
     "webpack-dev-middleware": "^1.6.1",
@@ -52,7 +54,13 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "express": "^4.14.0",
+    "flex-layouts": "^0.1.0",
+    "google-fonts": "^1.0.0",
+    "normalize.css": "^4.2.0",
     "quantum": "git://github.com/monstrs/quantum.git#feature/classnames",
-    "serve-static": "^1.11.1"
+    "redux-localstorage": "^0.4.1",
+    "reset.css": "^2.0.2",
+    "serve-static": "^1.11.1",
+    "url": "^0.11.0"
   }
 }

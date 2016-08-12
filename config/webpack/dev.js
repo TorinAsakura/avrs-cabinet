@@ -2,7 +2,7 @@ import path from 'path'
 import webpack from 'webpack'
 import autoprefixer from 'autoprefixer'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import CssResolvePlugin from 'quantum/lib/webpack/css-resolve-plugin'
+import CssResolvePlugin from 'elementum/lib/webpack/css-resolve-plugin'
 
 export const entry = [
   'babel-polyfill',
@@ -12,7 +12,7 @@ export const entry = [
 ]
 
 export const output = {
-  path: path.join(__dirname, '..', '..', 'dist'),
+  path: '/',
   filename: '[name].js',
 }
 
@@ -29,7 +29,7 @@ export const module = {
   loaders: [
     {
       test: /\.js?$/,
-      loader: 'quantum/lib/webpack/loader',
+      loader: 'elementum/lib/webpack/loader',
       exclude: /node_modules/,
     },
     {
@@ -44,7 +44,7 @@ export const module = {
           'react',
         ],
         plugins: [
-          ['quantum/lib/babel/plugin', {
+          ['elementum/lib/babel/plugin', {
             rootPath: './src',
           }],
           'react-hot-loader/babel',

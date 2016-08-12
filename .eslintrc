@@ -14,9 +14,6 @@
       "ignoreComments": false
     }],
     "jsx-quotes": [2, "prefer-single"],
-    "react/prop-types": 0,
-    "jsx-a11y/img-has-alt": 0,
-    "global-require": 0,
-    "import/no-unresolved": 0,
+    "react/jsx-filename-extension": 0
   }
 }

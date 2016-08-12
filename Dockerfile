@@ -10,6 +10,8 @@ COPY public /app/public
 
 RUN npm install --only=prod
 
+ENV NODE_ENV production
+
 EXPOSE 3000
 
 CMD [ "npm", "run", "server" ]

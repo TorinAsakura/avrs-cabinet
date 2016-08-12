@@ -1,0 +1,15 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+svg {
+  display: inline-flex;
+}
+
+#container {
+  height: 100%;
+}
