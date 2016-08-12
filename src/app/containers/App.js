@@ -1,11 +1,14 @@
 import React, { PropTypes } from 'react'
 import { RowLayout, Layout } from 'flex-layouts'
+import { Header } from '../components/header'
 import Container from './Container'
 
 const App = ({ children }) => (
   <Container>
     <RowLayout fill>
-      <Layout />
+      <Layout>
+        <Header />
+      </Layout>
       <Layout grow={1}>
         {children}
       </Layout>
