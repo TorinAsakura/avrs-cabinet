@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { StyleSheet } from 'elementum'
 import { ColumnLayout, RowLayout, Layout } from 'flex-layouts'
 import { Text, Space } from '../../../../ui/text'
@@ -29,7 +30,7 @@ const SignIn = ({ email, password, onChangeEmail, onChangePassword, onSignIn }) 
               <Layout basis='30px' />
               <Layout justify='center'>
                 <Text size='large'>
-                  Sign In
+                  <FormattedMessage id='Sign In' />
                 </Text>
               </Layout>
               <Layout basis='4px' />
