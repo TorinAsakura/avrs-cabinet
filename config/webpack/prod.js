@@ -64,6 +64,10 @@ export const module = {
       test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
       loader: 'file?name=[path][name].[ext]',
     },
+    {
+      test: /\.po$/,
+      loader: 'json!po?format=jed1.x',
+    },
   ],
 }
 

@@ -2,6 +2,7 @@ import { createStore, compose, applyMiddleware } from 'redux'
 import { reduxReactRouter } from 'redux-router'
 import { createHashHistory } from 'history'
 import api from './middleware/api'
+import intl from './middleware/intl'
 import persistStorage from './persistStorage'
 import rootReducer from '../reducers'
 
@@ -10,7 +11,7 @@ const createHistory = () => createHashHistory({ queryKey: false })
 const enhancer = compose(
   persistStorage,
   reduxReactRouter({ createHistory }),
-  applyMiddleware(api),
+  applyMiddleware(api, intl),
   window.devToolsExtension ? window.devToolsExtension() : f => f,
 )
 
