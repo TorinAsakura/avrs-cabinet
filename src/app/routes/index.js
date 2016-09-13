@@ -14,21 +14,6 @@ export default function getRoutes(store) {
         callback(null, App)
       }
     },
-    onEnter(nextState, replace) {
-      if (/^\/auth/.test(nextState.location.pathname)) {
-        if (store.getState().user.token) {
-          replace({
-            pathname: '/',
-          })
-        }
-      } else {
-        if (!store.getState().user.token) {
-          replace({
-            pathname: '/auth/sign_in',
-          })
-        }
-      }
-    },
     indexRoute: home(store),
     childRoutes: [
       auth(store),

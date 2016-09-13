@@ -9,15 +9,16 @@ const styles = StyleSheet.create({
     background: 'transparent',
     boxShadow: 'none',
     border: '1px solid #dfe4e8',
-    borderRadius: '4px',
+    borderRadius: '0px',
     padding: '0 12px',
     fontFamily: '"Ubuntu",sans-serif',
     fontWeight: 400,
     fontSize: '14px',
-    outline: 'none',
     color: '#262626',
+    appearance: 'none',
+    outline: 'none',
     '&:focus': {
-      borderColor: '#b9b9b9',
+      borderColor: '#0288d1',
     },
     '&::-webkit-input-placeholder': {
       fontWeight: 300,
@@ -27,14 +28,17 @@ const styles = StyleSheet.create({
   disabled: {
     opacity: 0.6,
   },
+  invalid: {
+    borderColor: '#ff0000',
+  },
 })
 
-const Input = ({ value, disabled, onChange, ...props }) => (
+const Input = ({ value, disabled, invalid, onChange, ...props }) => (
   <input
     {...props}
     value={value}
     disabled={disabled}
-    className={styles({ disabled })}
+    className={styles({ disabled, invalid })}
     onChange={({ target }) => onChange && onChange(target.value)}
   />
 )
@@ -42,6 +46,7 @@ const Input = ({ value, disabled, onChange, ...props }) => (
 Input.propTypes = {
   value: PropTypes.any,
   disabled: PropTypes.bool,
+  invalid: PropTypes.bool,
   onChange: PropTypes.func,
 }
 

@@ -74,4 +74,7 @@ export const plugins = [
     filename: 'index.html',
     template: path.resolve(__dirname, 'index.ejs'),
   }),
+  new webpack.ProvidePlugin({
+    fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+  }),
 ]

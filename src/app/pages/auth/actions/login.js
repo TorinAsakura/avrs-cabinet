@@ -1,5 +1,5 @@
 import { auth } from '../../../actions/user'
-import * as actions from '../constants/signIn'
+import * as actions from '../constants/login'
 
 export function change(field, value) {
   return {
@@ -9,14 +9,19 @@ export function change(field, value) {
   }
 }
 
-export function signIn() {
+export function login() {
   return async (dispatch, getState, { post }) => {
-    const { email, password } = getState().auth.signIn
+    const { email, password } = getState().auth.login
 
     const { result, response } = await post('users/auth', { json: { email, password } })
 
     if (response.ok) {
       dispatch(auth(result))
+    } else if (response.status === 422) {
+      dispatch({
+        type: actions.setErrors,
+        errors: result,
+      })
     }
   }
 }

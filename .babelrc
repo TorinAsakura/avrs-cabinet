@@ -1,13 +1,5 @@
 {
   "presets": [
-    "es2015",
-    "stage-0",
-    "react"
-  ],
-  "plugins": [
-    ["quantum/lib/babel/plugin", {
-      "rootPath": "./src",
-    }],
-    "transform-runtime"
+    "node5"
   ]
 }

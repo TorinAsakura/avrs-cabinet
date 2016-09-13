@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     cursor: 'pointer',
     width: '120px',
     height: '30px',
-    borderRadius: '4px',
+    borderRadius: '0px',
     lineHeight: '12px',
     textAlign: 'center',
     overflow: 'hidden',

@@ -7,8 +7,6 @@ import CssResolvePlugin from 'elementum/lib/webpack/css-resolve-plugin'
 
 export const entry = [
   'babel-polyfill',
-  'webpack-hot-middleware/client',
-  'react-hot-loader/patch',
   './src/cabinet.js',
 ]
 
@@ -48,7 +46,6 @@ export const module = {
           ['elementum/lib/babel/plugin', {
             rootPath: './src',
           }],
-          'react-hot-loader/babel',
           'transform-runtime',
         ],
       },
@@ -73,7 +70,6 @@ export const module = {
 
 export const plugins = [
   new CssResolvePlugin(),
-  new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: path.resolve(__dirname, 'index.ejs'),
@@ -83,6 +79,9 @@ export const plugins = [
     'process.env': {
       NODE_ENV: JSON.stringify('production'),
     },
+  }),
+  new webpack.ProvidePlugin({
+    fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
   }),
   new webpack.optimize.UglifyJsPlugin(),
 ]

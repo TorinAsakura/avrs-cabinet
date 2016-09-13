@@ -15,7 +15,7 @@ const Auth = ({ children }) => (
   <div className={styles()}>
     <ColumnLayout fill>
       <Layout grow={1} />
-      <Layout basis='400px'>
+      <Layout>
         <RowLayout fill>
           <Layout shrink={1} basis='25%' />
           <Layout justify='center'>

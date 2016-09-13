@@ -31,6 +31,15 @@ services:
       - ./:/workspace
     entrypoint: npm run build
 
+  demo:
+    image: node
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    entrypoint: npm run server
+    ports:
+      - "3000:3000"
+
   server:
     build: ./
     ports:

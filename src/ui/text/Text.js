@@ -39,10 +39,19 @@ const styles = StyleSheet.create({
   'color=gray300': {
     color: '#757575',
   },
+  'color=red400': {
+    color: '#ff0000',
+  },
+  'weight=light': {
+    fontWeight: 300,
+  },
+  'weight=bold': {
+    fontWeight: 500,
+  },
 })
 
-const Text = ({ children, size = 'normal', color }) => (
-  <span className={styles({ size, color })}>
+const Text = ({ children, size = 'normal', color, weight }) => (
+  <span className={styles({ size, color, weight })}>
     {children}
   </span>
 )
@@ -62,6 +71,7 @@ Text.propTypes = {
     'xsmall',
   ]),
   color: PropTypes.string,
+  weight: PropTypes.string,
 }
 
 export default Text
