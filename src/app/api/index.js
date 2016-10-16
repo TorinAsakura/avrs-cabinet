@@ -2,7 +2,7 @@ import url from 'url'
 import { start, end } from '../actions/remote'
 
 export default function createApi(dispatch, getState) {
-  const apiEndpoint = 'https://api.stage.aversis.net/v1/'
+  const apiEndpoint = 'http://api.stage.aversis.net/v1/'
   const locale = getState().intl.locale
 
   const defaultOptions = {

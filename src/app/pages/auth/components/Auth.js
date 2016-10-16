@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { StyleSheet } from 'elementum'
 import { ColumnLayout, RowLayout, Layout } from 'flex-layouts'
-import { LogoWithText } from '../../../../ui/logo'
+import { LogoWithText } from 'avrs-ui/src/logo'
 
 const styles = StyleSheet.create({
   self: {

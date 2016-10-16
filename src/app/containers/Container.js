@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet } from 'elementum'
-import { Progress } from '../../ui/progress'
+import { Progress } from 'avrs-ui/src/progress'
 
 const styles = StyleSheet.create({
   self: {

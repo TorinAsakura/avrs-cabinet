@@ -1,36 +1,11 @@
 import React, { PropTypes } from 'react'
 import { StyleSheet } from 'elementum'
 import { ColumnLayout, RowLayout, Layout } from 'flex-layouts'
-import { intlShape, defineMessages } from 'react-intl'
 import { Text, Space } from 'avrs-ui/src/text'
 import { Input } from 'avrs-ui/src/input'
 import { RouteLink } from 'avrs-ui/src/link'
 import { Button } from 'avrs-ui/src/button'
-import { Condition } from 'avrs-ui/src/condition'
 import Info from './Info'
-
-const messages = defineMessages({
-  title: {
-    id: 'login.title',
-    defaultMessage: 'Log In',
-  },
-  login: {
-    id: 'login.login',
-    defaultMessage: 'Login',
-  },
-  forgotPassword: {
-    id: 'login.forgot_password',
-    defaultMessage: 'Forgot password?',
-  },
-  registerQuestion: {
-    id: 'login.register_question',
-    defaultMessage: 'Don\'t have an account?',
-  },
-  register: {
-    id: 'login.register',
-    defaultMessage: 'Register',
-  },
-})
 
 const styles = StyleSheet.create({
   self: {
@@ -38,12 +13,16 @@ const styles = StyleSheet.create({
     boxShadow: '0px 1px 2px 2px rgba(0,0,0,0.05)',
     border: '0px solid #e2e2e2',
     margin: '5px',
-    width: '400px',
+    width: '100%',
     boxSizing: 'border-box',
   },
 })
 
-const Login = ({ email, password, errors, intl, onChangeEmail, onChangePassword, onLogin }) => (
+const SignUp = ({
+  email, password, passwordConfirmation,
+  onChangeEmail, onChangePassword, onChangePasswordConfirmation,
+  onRegister,
+}) => (
   <div className={styles()}>
     <RowLayout>
       <Layout>
@@ -54,13 +33,13 @@ const Login = ({ email, password, errors, intl, onChangeEmail, onChangePassword,
               <Layout basis='30px' />
               <Layout justify='center'>
                 <Text size='large'>
-                  {intl.formatMessage(messages.title)}
+                  Sign Up
                 </Text>
               </Layout>
               <Layout basis='4px' />
               <Layout justify='center'>
                 <Text size='xsmall' color='gray300'>
-                  {' ' || 'Please fill your basic information'}
+                  Please fill your basic information
                 </Text>
               </Layout>
               <Layout basis='25px' />
@@ -68,20 +47,9 @@ const Login = ({ email, password, errors, intl, onChangeEmail, onChangePassword,
                 <Input
                   value={email}
                   placeholder='Email'
-                  invalid={errors.email}
                   onChange={onChangeEmail}
                 />
               </Layout>
-              <Condition match={errors.email}>
-                <RowLayout>
-                  <Layout basis='5px' />
-                  <Layout>
-                    <Text color='red400' size='xsmall'>
-                      {errors.email}
-                    </Text>
-                  </Layout>
-                </RowLayout>
-              </Condition>
               <Layout basis='15px' />
               <Layout>
                 <Input
@@ -91,25 +59,27 @@ const Login = ({ email, password, errors, intl, onChangeEmail, onChangePassword,
                   onChange={onChangePassword}
                 />
               </Layout>
+              <Layout basis='15px' />
+              <Layout>
+                <Input
+                  type='password'
+                  value={passwordConfirmation}
+                  placeholder='Repeat password'
+                  onChange={onChangePasswordConfirmation}
+                />
+              </Layout>
               <Layout basis='25px' />
               <Layout>
                 <ColumnLayout>
-                  <Layout align='center'>
-                    <RouteLink to='/auth/reset_password'>
-                      <Text size='xsmall' color='blue400'>
-                        {intl.formatMessage(messages.forgotPassword)}
-                      </Text>
-                    </RouteLink>
-                  </Layout>
                   <Layout grow={1} />
                   <Layout>
-                    <Button onClick={onLogin}>
-                      {intl.formatMessage(messages.login)}
+                    <Button onClick={onRegister}>
+                      Register
                     </Button>
                   </Layout>
                 </ColumnLayout>
               </Layout>
-              <Layout basis='30px' />
+              <Layout basis='25px' />
             </RowLayout>
           </Layout>
           <Layout basis='35px' />
@@ -118,12 +88,12 @@ const Login = ({ email, password, errors, intl, onChangeEmail, onChangePassword,
       <Layout>
         <Info>
           <Text size='xsmall'>
-            {intl.formatMessage(messages.registerQuestion)}
+            Already have an account?
           </Text>
           <Space />
-          <RouteLink to='/auth/registration'>
+          <RouteLink to='/auth/sign_in'>
             <Text color='blue400' size='xsmall'>
-              {intl.formatMessage(messages.register)}
+              Sign In
             </Text>
           </RouteLink>
         </Info>
@@ -132,14 +102,14 @@ const Login = ({ email, password, errors, intl, onChangeEmail, onChangePassword,
   </div>
 )
 
-Login.propTypes = {
+SignUp.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
-  errors: PropTypes.object,
+  passwordConfirmation: PropTypes.string,
   onChangeEmail: PropTypes.func,
   onChangePassword: PropTypes.func,
-  onLogin: PropTypes.func,
-  intl: intlShape.isRequired,
+  onChangePasswordConfirmation: PropTypes.func,
+  onRegister: PropTypes.func,
 }
 
-export default Login
+export default SignUp

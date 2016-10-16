@@ -29,6 +29,9 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
+# Auth
+.netrc
+
 # IDE cache directory
 .c9
 

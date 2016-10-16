@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "description": "Aversis System Cabinet Repository",
   "scripts": {
-    "dev": "babel-node bin/dev.js",
-    "build": "babel-node bin/build.js",
-    "server": "babel-node bin/server.js",
-    "lint": "eslint bin config src -f node_modules/eslint-friendly-formatter",
-    "docs:dev": "docsnow server --summary src/ui/Readme.md --output /ui/"
+    "dev": "node -r babel-register bin/dev.js",
+    "build": "node -r babel-register bin/build.js",
+    "start": "node -r babel-register bin/server.js",
+    "lint": "eslint bin config src -f table"
   },
   "repository": {
     "type": "git",
@@ -21,6 +20,7 @@
   "homepage": "https://github.com/AtlantisUnited/avrs-cabinet#readme",
   "devDependencies": {
     "autoprefixer": "^6.3.7",
+    "avrs-ui": "git+https://github.com/AtlantisUnited/avrs-ui.git#feature/landing",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.9.0",

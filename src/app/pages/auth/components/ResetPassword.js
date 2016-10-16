@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react'
 import { StyleSheet } from 'elementum'
 import { ColumnLayout, RowLayout, Layout } from 'flex-layouts'
 import { intlShape, defineMessages } from 'react-intl'
-import { Text } from '../../../../ui/text'
-import { Input } from '../../../../ui/input'
-import { RouteLink } from '../../../../ui/link'
-import { Button } from '../../../../ui/button'
-import { Condition } from '../../../../ui/condition'
+import { Text } from 'avrs-ui/src/text'
+import { Input } from 'avrs-ui/src/input'
+import { RouteLink } from 'avrs-ui/src/link'
+import { Button } from 'avrs-ui/src/button'
+import { Condition } from 'avrs-ui/src/condition'
 
 const messages = defineMessages({
   title: {

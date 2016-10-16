@@ -14,6 +14,12 @@ pipeline:
     commands:
       - npm run build
 
+  deps:
+    image: node:${NODE_VERSION}
+    commands:
+      - rm -r node_modules
+      - npm install --only=prod
+
   docker:
     image: registry.monstrs.net:5000/drone-docker
     privileged: true
@@ -28,7 +34,7 @@ pipeline:
     host: 193.124.177.25
     timeout: 30
     commands:
-      - systemctl restart cabinet
+      - systemctl restart avrs-cabinet
 
 matrix:
   NODE_VERSION:
