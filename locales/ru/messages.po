@@ -13,3 +13,63 @@ msgstr ""
 
 msgid "Sign In"
 msgstr "Авторизация"
+
+msgctxt "registration.registration"
+msgid "Create account"
+msgstr "Регистрация"
+
+msgctxt "registration.email"
+msgid "Email"
+msgstr "Электронная почта"
+
+msgctxt "registration.name"
+msgid "Name"
+msgstr "Как вас зовут"
+
+msgctxt "registration.first_name"
+msgid "First"
+msgstr "Имя"
+
+msgctxt "registration.last_name"
+msgid "Last"
+msgstr "Фамилия"
+
+msgctxt "registration.password"
+msgid "Password"
+msgstr "Пароль"
+
+msgctxt "registration.password_confirmation"
+msgid "Confirmation"
+msgstr "Подтверждение"
+
+msgctxt "registration.register"
+msgid "Register"
+msgstr "Создать аккаунт"
+
+msgctxt "registration.already_have_account"
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+msgctxt "registration.log_in"
+msgid "Log In"
+msgstr "Войти"
+
+msgctxt "login.title"
+msgid "Log In"
+msgstr "Авторизация"
+
+msgctxt "login.forgot_password"
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
+msgctxt "login.login"
+msgid "Login"
+msgstr "Войти"
+
+msgctxt "login.register_question"
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+msgctxt "login.register"
+msgid "Register"
+msgstr "Регистрация"

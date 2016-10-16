@@ -1,10 +1,10 @@
 import React from 'react'
 import { ColumnLayout, RowLayout, Layout } from 'flex-layouts'
-import { Navigation, Item } from '../../../ui/navigation'
-import { LogoWithText } from '../../../ui/logo'
-import { Photo } from '../../../ui/photo'
-import { Text, Space } from '../../../ui/text'
-import { TriangleIcon } from '../../../ui/icons'
+import { Navigation, Item } from 'avrs-ui/src/navigation'
+import { LogoWithText } from 'avrs-ui/src/logo'
+import { Photo } from 'avrs-ui/src/photo'
+import { Text, Space } from 'avrs-ui/src/text'
+import { TriangleIcon } from 'avrs-ui/src/icons'
 
 const Header = () => (
   <Navigation>

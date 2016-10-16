@@ -6,16 +6,10 @@ import webpack from 'webpack'
 import serveStatic from 'serve-static'
 import devMiddleware from 'webpack-dev-middleware'
 import hotMiddleware from 'webpack-hot-middleware'
-import { serverConfig } from 'docsnow/lib/webpack/config'
 import * as config from '../config/webpack/dev'
 
 const app = new Express()
-
-const docsConfig = serverConfig('src/ui/Readme.md', '/ui/')
-docsConfig.module.loaders.push(config.module.loaders[0])
-docsConfig.module.loaders.push(config.module.loaders[1])
-
-const compiler = webpack([config, docsConfig])
+const compiler = webpack([config])
 
 app.use(devMiddleware(compiler, { noInfo: true }))
 app.use(hotMiddleware(compiler))

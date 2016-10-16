@@ -1,15 +1,10 @@
+import { compose } from 'redux'
 import persistState from 'redux-localstorage'
+import adapter from 'redux-localstorage/lib/adapters/localStorage'
+import filter from 'redux-localstorage-filter'
 
-export default persistState('user', {
-  merge: (initialState = {}, persistedState = {}) => {
-    if (persistedState && persistedState.user) {
-      return {
-        ...initialState,
-        user: persistedState.user,
-      }
-    }
+const storage = compose(
+  filter(['user', 'intl.locale'])
+)(adapter(window.localStorage))
 
-    return initialState
-  },
-  serialize: state => JSON.stringify(state),
-})
+export default persistState(storage)

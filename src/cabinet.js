@@ -8,6 +8,8 @@ import './cabinet.css'
 
 const store = configureStore()
 
+store.dispatch({ type: '@@avrs-cabinet/intl/INIT' })
+
 render(
   <Root store={store} />,
   document.getElementById('container')

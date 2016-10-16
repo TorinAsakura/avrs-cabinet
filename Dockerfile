@@ -7,11 +7,10 @@ COPY .babelrc /app
 COPY package.json /app
 COPY bin /app/bin
 COPY public /app/public
-
-RUN npm install --only=prod
+COPY node_modules /app/node_modules
 
 ENV NODE_ENV production
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "server" ]
+CMD [ "npm", "start" ]

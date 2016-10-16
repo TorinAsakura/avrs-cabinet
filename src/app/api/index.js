@@ -1,11 +1,15 @@
 import url from 'url'
+import { start, end } from '../actions/remote'
 
 export default function createApi(dispatch, getState) {
-  const apiEndpoint = 'https://api.stage.aversis.net/v1/'
+  const apiEndpoint = 'http://api.stage.aversis.net/v1/'
+  const locale = getState().intl.locale
 
   const defaultOptions = {
     credentials: 'same-origin',
-    headers: {},
+    headers: {
+      'Accept-Language': locale,
+    },
     query: {},
   }
 
@@ -50,19 +54,25 @@ export default function createApi(dispatch, getState) {
       delete mergeOptions.files
     }
 
+    const inputUrl = url.format({
+      ...url.parse(`${apiEndpoint}${href}`),
+      query: mergeOptions.query,
+    })
+
     try {
-      const inputUrl = url.format({
-        ...url.parse(`${apiEndpoint}${href}`),
-        query: mergeOptions.query,
-      })
+      dispatch(start(inputUrl))
 
       const response = await fetch(inputUrl, mergeOptions)
       const text = await response.text()
       const result = JSON.parse(text)
 
+      dispatch(end(inputUrl))
+
       return { result, response }
     } catch (err) {
       console.log(err) // eslint-disable-line no-console
+
+      dispatch(end(inputUrl))
 
       Promise.reject(err)
 

@@ -1,7 +1,5 @@
 import { addLocaleData } from 'react-intl'
-import { load, change } from '../../constants/intl'
-
-let initialized = false
+import { init, load, change } from '../../constants/intl'
 
 const loadLocale = (locale, callback) => {
   System.import(`react-intl/locale-data/${locale}`).then(addLocaleData)
@@ -15,9 +13,7 @@ const loadLocale = (locale, callback) => {
 
 export default function api({ dispatch, getState }) {
   return next => action => {
-    if (!initialized) {
-      initialized = true
-
+    if (action.type === init) {
       loadLocale(getState().intl.locale, messages => {
         dispatch({
           type: load,

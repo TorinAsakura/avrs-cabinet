@@ -1,14 +1,11 @@
 import path from 'path'
 import webpack from 'webpack'
-import autoprefixer from 'autoprefixer'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CssResolvePlugin from 'elementum/lib/webpack/css-resolve-plugin'
 
 export const entry = [
   'babel-polyfill',
-  'webpack-hot-middleware/client',
-  'react-hot-loader/patch',
   './src/cabinet.js',
 ]
 
@@ -16,15 +13,6 @@ export const output = {
   path: path.join(__dirname, '..', '..', 'public'),
   filename: '[name].js',
 }
-
-export const postcss = [
-  autoprefixer({
-    browsers: [
-      '>2%',
-      'last 2 versions',
-    ],
-  }),
-]
 
 export const module = {
   loaders: [
@@ -48,7 +36,6 @@ export const module = {
           ['elementum/lib/babel/plugin', {
             rootPath: './src',
           }],
-          'react-hot-loader/babel',
           'transform-runtime',
         ],
       },
@@ -68,12 +55,36 @@ export const module = {
       test: /\.po$/,
       loader: 'json!po?format=jed1.x',
     },
+    {
+      test: /\.js?$/,
+      loader: 'elementum/lib/webpack/loader',
+      include: /node_modules\/avrs-ui/,
+    },
+    {
+      test: /\.js?$/,
+      loader: 'babel',
+      include: /node_modules\/avrs-ui/,
+      query: {
+        babelrc: false,
+        presets: [
+          'es2015',
+          'stage-0',
+          'react',
+        ],
+        plugins: [
+          ['elementum/lib/babel/plugin', {
+            rootPath: './',
+          }],
+          'react-hot-loader/babel',
+          'transform-runtime',
+        ],
+      },
+    },
   ],
 }
 
 export const plugins = [
   new CssResolvePlugin(),
-  new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: path.resolve(__dirname, 'index.ejs'),
@@ -83,6 +94,9 @@ export const plugins = [
     'process.env': {
       NODE_ENV: JSON.stringify('production'),
     },
+  }),
+  new webpack.ProvidePlugin({
+    fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
   }),
   new webpack.optimize.UglifyJsPlugin(),
 ]

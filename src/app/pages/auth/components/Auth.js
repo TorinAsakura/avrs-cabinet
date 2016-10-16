@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { StyleSheet } from 'elementum'
 import { ColumnLayout, RowLayout, Layout } from 'flex-layouts'
-import { LogoWithText } from '../../../../ui/logo'
+import { LogoWithText } from 'avrs-ui/src/logo'
 
 const styles = StyleSheet.create({
   self: {
@@ -15,7 +15,7 @@ const Auth = ({ children }) => (
   <div className={styles()}>
     <ColumnLayout fill>
       <Layout grow={1} />
-      <Layout basis='400px'>
+      <Layout>
         <RowLayout fill>
           <Layout shrink={1} basis='25%' />
           <Layout justify='center'>

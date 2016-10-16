@@ -1,21 +1,26 @@
+import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { IntlProvider as BaseIntlProvider } from 'react-intl'
+import { IntlProvider } from 'react-intl'
 
-class IntlProvider extends BaseIntlProvider {
-  getBoundFormatFns(config, state) {
-    const { formatMessage, ...formatFns } = super.getBoundFormatFns(config, state)
-
-    return {
-      ...formatFns,
-      formatMessage: (descriptor, values) => {
-        if (config.locale === 'en') {
-          return formatMessage({ ...descriptor, defaultMessage: descriptor.id }, values)
-        }
-
-        return formatMessage(descriptor, values)
-      },
-    }
+const IntlProviderContainer = ({ locale, messages, children }) => {
+  if (!messages) {
+    return null
   }
+
+  return (
+    <IntlProvider
+      locale={locale}
+      messages={messages}
+    >
+      {children}
+    </IntlProvider>
+  )
+}
+
+IntlProviderContainer.propTypes = {
+  locale: PropTypes.string,
+  messages: PropTypes.any,
+  children: PropTypes.element,
 }
 
 export default connect(
@@ -23,4 +28,4 @@ export default connect(
     locale: state.intl.locale,
     messages: state.intl.messages,
   })
-)(IntlProvider)
+)(IntlProviderContainer)
