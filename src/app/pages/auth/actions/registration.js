@@ -1,4 +1,6 @@
+import gql from 'graphql-tag'
 import { auth } from '../../../actions/user'
+import { init } from '../../../actions/init'
 import * as actions from '../constants/registration'
 
 export function change(field, value) {
@@ -10,30 +12,42 @@ export function change(field, value) {
 }
 
 export function register() {
-  return async (dispatch, getState, { post }) => {
-    const { email, firstName, lastName, password, passwordConfirmation } = getState().auth.registration
+  return async (dispatch, getState, client) => {
+    const { email, firstName, lastName, password, passwordConfirmation, inviteCode } = getState().auth.registration
     const activateUrl = `${window.location.origin}/#/auth/activate/`
 
-    const json = {
-      email,
-      firstName,
-      lastName,
-      password: {
-        value: password,
-        confirmation: passwordConfirmation,
-      },
-      activateUrl,
-    }
+    const { data } = await client.mutate({
+      mutation: gql`
+        mutation {
+          createUser(
+            email: "${email}",
+            firstName: "${firstName}",
+            lastName: "${lastName}",
+            password: {
+              value: "${password}",
+              confirmation: "${passwordConfirmation}"
+            },
+            inviteCode: "${(inviteCode && inviteCode.length > 0) ? inviteCode : ''}",
+            activateUrl: "${activateUrl}"
+          ) {
+            token { id, email, token }
+            errors {
+              key
+              message
+            }
+          }
+        }
+      `,
+    })
 
-    const { result, response } = await post('users/register', { json })
-
-    if (response.ok) {
-      dispatch(auth(result))
-    } else if (response.status === 422) {
+    if (data.createUser.errors.length > 0) {
       dispatch({
         type: actions.setErrors,
-        errors: result,
+        errors: data.createUser.errors,
       })
+    } else {
+      dispatch(auth(data.createUser.token))
+      dispatch(init())
     }
   }
 }

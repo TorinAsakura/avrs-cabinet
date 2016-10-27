@@ -5,13 +5,13 @@ import UpdatePassword from '../components/UpdatePassword'
 
 export default connect(
   state => ({
-    password: state.auth.updatePassword.password,
-    passwordConfirmation: state.auth.updatePassword.passwordConfirmation,
+    password: state.auth.updatePassword.password.value,
+    passwordConfirmation: state.auth.updatePassword.password.confirmation,
     errors: state.auth.updatePassword.errors,
   }),
   dispatch => ({
-    onChangePassword: value => dispatch(change('password', value)),
-    onChangePasswordConfirmation: value => dispatch(change('passwordConfirmation', value)),
+    onChangePassword: value => dispatch(change('value', value)),
+    onChangePasswordConfirmation: value => dispatch(change('confirmation', value)),
     onUpdate: () => dispatch(update()),
-  })
+  }),
 )(injectIntl(UpdatePassword))

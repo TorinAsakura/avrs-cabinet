@@ -4,14 +4,17 @@ import storeShape from 'react-redux/lib/utils/storeShape'
 import { ReduxRouter } from 'redux-router'
 import { AppContainer } from 'react-hot-loader'
 import IntlProvider from './IntlProvider'
+import Preload from './Preload'
 import getRoutes from '../routes'
 
 const Root = ({ store }) => (
   <AppContainer>
     <Provider store={store}>
-      <IntlProvider>
-        <ReduxRouter routes={getRoutes(store)} />
-      </IntlProvider>
+      <Preload>
+        <IntlProvider>
+          <ReduxRouter routes={getRoutes(store)} />
+        </IntlProvider>
+      </Preload>
     </Provider>
   </AppContainer>
 )

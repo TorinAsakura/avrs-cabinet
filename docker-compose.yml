@@ -30,11 +30,13 @@ services:
       - ./:/workspace
     entrypoint: npm run dev
     ports:
-      - "3030:3030"
+      - "3040:3030"
 
   build:
     image: node
     working_dir: /workspace
+    environment:
+      - NODE_ENV=production
     volumes:
       - ./:/workspace
     entrypoint: npm run build

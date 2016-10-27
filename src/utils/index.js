@@ -1,3 +1,9 @@
+import { lensPath, set } from 'ramda'
+
+export function formatErrors(errors = []) {
+  return errors.reduce((result, error) => set(lensPath(error.key), error.message, result), {})
+}
+
 export function createReducer(initialState, reducers = {}, nested) {
   return (state = initialState, { type, ...payload }) => {
     const handler = reducers[type]

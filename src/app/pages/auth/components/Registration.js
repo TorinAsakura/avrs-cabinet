@@ -1,91 +1,92 @@
 import React, { PropTypes } from 'react'
-import { StyleSheet } from 'elementum'
-import { ColumnLayout, RowLayout, Layout } from 'flex-layouts'
-import { intlShape, defineMessages } from 'react-intl'
+import { Column, Row, Layout } from 'flex-layouts'
+import { intlShape } from 'react-intl'
 import { Text, Space } from 'avrs-ui/src/text'
 import { Input } from 'avrs-ui/src/input'
 import { RouteLink } from 'avrs-ui/src/link'
 import { Button } from 'avrs-ui/src/button'
 import { Condition } from 'avrs-ui/src/condition'
-import Info from './Info'
-
-const messages = defineMessages({
-  registration: {
-    id: 'registration.registration',
-    defaultMessage: 'Create account',
-  },
-  email: {
-    id: 'registration.email',
-    defaultMessage: 'Email',
-  },
-  name: {
-    id: 'registration.name',
-    defaultMessage: 'Name',
-  },
-  firstName: {
-    id: 'registration.first_name',
-    defaultMessage: 'First',
-  },
-  lastName: {
-    id: 'registration.last_name',
-    defaultMessage: 'Last',
-  },
-  password: {
-    id: 'registration.password',
-    defaultMessage: 'Password',
-  },
-  passwordConfirmation: {
-    id: 'registration.password_confirmation',
-    defaultMessage: 'Confirmation',
-  },
-  register: {
-    id: 'registration.register',
-    defaultMessage: 'Register',
-  },
-  alreadyHaveAccount: {
-    id: 'registration.already_have_account',
-    defaultMessage: 'Already have an account?',
-  },
-  logIn: {
-    id: 'registration.log_in',
-    defaultMessage: 'Log In',
-  },
-})
-
-const styles = StyleSheet.create({
-  self: {
-    background: 'rgba(255, 255, 255, 0.95)',
-    boxShadow: '0px 1px 2px 2px rgba(0,0,0,0.05)',
-    border: '0px solid #e2e2e2',
-    margin: '5px',
-    width: '400px',
-    boxSizing: 'border-box',
-  },
-})
+import { Divider } from 'avrs-ui/src/divider'
+import { Label } from 'avrs-ui/src/label'
+import { Block } from 'avrs-ui/src/content'
 
 const Registration = ({
-  email, firstName, lastName, password, passwordConfirmation, errors,
+  email, firstName, lastName, password, passwordConfirmation, inviteCode, errors,
   onChangeEmail, onChangeFirstName, onChangeLastName,
-  onChangePassword, onChangePasswordConfirmation, onRegister, intl,
+  onChangePassword, onChangePasswordConfirmation, onChangeInviteCode, onRegister,
 }) => (
-  <div className={styles()}>
-    <RowLayout>
+  <Block>
+    <Row>
+      <Layout basis='20px' />
+      <Layout justify='center'>
+        <Text color='black400'>
+          Стать участником
+        </Text>
+      </Layout>
+      <Layout basis='20px' />
       <Layout>
-        <ColumnLayout>
-          <Layout basis='35px' />
-          <Layout shrink={1} basis='100%'>
-            <RowLayout>
-              <Layout basis='30px' />
-              <Layout justify='center'>
-                <Text size='large'>
-                  {intl.formatMessage(messages.registration)}
-                </Text>
-              </Layout>
-              <Layout basis='20px' />
+        <Divider />
+      </Layout>
+      <Layout basis='30px' />
+      <Layout>
+        <Column>
+          <Layout grow={1} />
+          <Layout shrink={1} basis='300px'>
+            <Row>
               <Layout>
-                <Text size='xsmall' weight='bold'>
-                  {intl.formatMessage(messages.email)}
-                </Text>
+                <Column>
+                  <Layout shrink={1} basis='50%'>
+                    <Row>
+                      <Layout>
+                        <Label>
+                          Имя
+                        </Label>
+                      </Layout>
+                      <Layout basis='5px' />
+                      <Layout>
+                        <Input
+                          value={firstName}
+                          invalid={errors.firstName}
+                          onChange={onChangeFirstName}
+                        />
+                      </Layout>
+                    </Row>
+                  </Layout>
+                  <Layout basis='10px' />
+                  <Layout shrink={1} basis='50%'>
+                    <Row>
+                      <Layout>
+                        <Label>
+                          Фамилия
+                        </Label>
+                      </Layout>
+                      <Layout basis='5px' />
+                      <Layout>
+                        <Input
+                          value={lastName}
+                          invalid={errors.lastName}
+                          onChange={onChangeLastName}
+                        />
+                      </Layout>
+                    </Row>
+                  </Layout>
+                </Column>
+              </Layout>
+              <Condition match={errors.firstName || errors.lastName}>
+                <Row>
+                  <Layout basis='5px' />
+                  <Layout>
+                    <Text color='red400' size='xsmall'>
+                      {errors.firstName || errors.lastName}
+                    </Text>
+                  </Layout>
+                </Row>
+              </Condition>
+              <Layout basis='16px' />
+              <Layout>
+                <Label>
+                  Email адрес
+                </Label>
               </Layout>
               <Layout basis='5px' />
               <Layout>
@@ -96,131 +97,143 @@ const Registration = ({
                 />
               </Layout>
               <Condition match={errors.email}>
-                <RowLayout>
+                <Row>
                   <Layout basis='5px' />
                   <Layout>
                     <Text color='red400' size='xsmall'>
                       {errors.email}
                     </Text>
                   </Layout>
-                </RowLayout>
+                </Row>
               </Condition>
               <Layout basis='16px' />
               <Layout>
-                <Text size='xsmall' weight='bold'>
-                  {intl.formatMessage(messages.name)}
-                </Text>
-              </Layout>
-              <Layout basis='5px' />
-              <Layout>
-                <ColumnLayout>
-                  <Layout shrink={1} basis='50%'>
-                    <Input
-                      value={firstName}
-                      placeholder={intl.formatMessage(messages.firstName)}
-                      invalid={errors.firstName}
-                      onChange={onChangeFirstName}
-                    />
-                  </Layout>
-                  <Layout basis='10px' />
-                  <Layout shrink={1} basis='50%'>
-                    <Input
-                      value={lastName}
-                      placeholder={intl.formatMessage(messages.lastName)}
-                      invalid={errors.lastName}
-                      onChange={onChangeLastName}
-                    />
-                  </Layout>
-                </ColumnLayout>
-              </Layout>
-              <Condition match={errors.firstName || errors.lastName}>
-                <RowLayout>
-                  <Layout basis='5px' />
-                  <Layout>
-                    <Text color='red400' size='xsmall'>
-                      {errors.firstName || errors.lastName}
-                    </Text>
-                  </Layout>
-                </RowLayout>
-              </Condition>
-              <Layout basis='20px' />
-              <Layout>
-                <Text size='xsmall' weight='bold'>
-                  {intl.formatMessage(messages.password)}
-                </Text>
+                <Label>
+                  Пароль
+                </Label>
               </Layout>
               <Layout basis='5px' />
               <Layout>
                 <Input
                   type='password'
                   value={password}
-                  placeholder={intl.formatMessage(messages.password)}
-                  invalid={errors.password}
+                  invalid={errors.password && errors.password.value}
                   onChange={onChangePassword}
                 />
               </Layout>
-              <Condition match={errors.password}>
-                <RowLayout>
+              <Condition match={errors.password && errors.password.value}>
+                <Row>
                   <Layout basis='5px' />
                   <Layout>
                     <Text color='red400' size='xsmall'>
-                      {errors.password}
+                      {errors.password && errors.password.value}
                     </Text>
                   </Layout>
-                </RowLayout>
+                </Row>
               </Condition>
-              <Layout basis='15px' />
+              <Layout basis='16px' />
+              <Layout>
+                <Label>
+                  Повторите пароль
+                </Label>
+              </Layout>
+              <Layout basis='5px' />
               <Layout>
                 <Input
                   type='password'
                   value={passwordConfirmation}
-                  placeholder={intl.formatMessage(messages.passwordConfirmation)}
-                  invalid={errors.passwordConfirmation}
+                  invalid={errors.password && errors.password.confirmation}
                   onChange={onChangePasswordConfirmation}
                 />
               </Layout>
-              <Condition match={errors.passwordConfirmation}>
-                <RowLayout>
+              <Condition match={errors.password && errors.password.confirmation}>
+                <Row>
                   <Layout basis='5px' />
                   <Layout>
                     <Text color='red400' size='xsmall'>
-                      {errors.passwordConfirmation}
+                      {errors.password && errors.password.confirmation}
                     </Text>
                   </Layout>
-                </RowLayout>
+                </Row>
+              </Condition>
+              <Layout basis='16px' />
+              <Layout>
+                <Label>
+                  Invite code
+                </Label>
+              </Layout>
+              <Layout basis='5px' />
+              <Layout>
+                <Input
+                  value={inviteCode}
+                  invalid={errors.inviteCode}
+                  onChange={onChangeInviteCode}
+                />
+              </Layout>
+              <Condition match={errors.inviteCode}>
+                <Row>
+                  <Layout basis='5px' />
+                  <Layout>
+                    <Text color='red400' size='xsmall'>
+                      {errors.inviteCode}
+                    </Text>
+                  </Layout>
+                </Row>
               </Condition>
               <Layout basis='25px' />
-              <Layout>
-                <ColumnLayout>
-                  <Layout grow={1} />
-                  <Layout>
-                    <Button onClick={onRegister}>
-                      {intl.formatMessage(messages.register)}
-                    </Button>
-                  </Layout>
-                </ColumnLayout>
-              </Layout>
-              <Layout basis='25px' />
-            </RowLayout>
+            </Row>
           </Layout>
-          <Layout basis='35px' />
-        </ColumnLayout>
+          <Layout grow={1} />
+        </Column>
       </Layout>
       <Layout>
-        <Info>
-          <Text size='xsmall'>
-            {intl.formatMessage(messages.alreadyHaveAccount)}
-          </Text>
-          <Space />
-          <RouteLink to='/auth/login'>
-            <Text color='blue400' size='xsmall'>
-              {intl.formatMessage(messages.logIn)}
-            </Text>
-          </RouteLink>
-        </Info>
+        <Column>
+          <Layout grow={1} />
+          <Layout basis='200px'>
+            <Button
+              fill
+              shadow
+              rounded
+              color='green'
+              onClick={onRegister}
+            >
+              Стать участником
+            </Button>
+          </Layout>
+          <Layout grow={1} />
+        </Column>
       </Layout>
-    </RowLayout>
-  </div>
+      <Layout basis='30px' />
+      <Layout>
+        <Column>
+          <Layout basis='30px' />
+          <Layout grow={1}>
+            <Divider />
+          </Layout>
+          <Layout basis='30px' />
+        </Column>
+      </Layout>
+      <Layout basis='20px' />
+      <Layout>
+        <Column>
+          <Layout grow={1} />
+          <Layout>
+            <Text size='xsmall'>
+              Уже есть аккаунт?
+            </Text>
+            <Space />
+            <RouteLink to='/auth/login'>
+              <Text color='blue400' size='xsmall'>
+                Войти
+              </Text>
+            </RouteLink>
+          </Layout>
+          <Layout grow={1} />
+        </Column>
+      </Layout>
+      <Layout basis='20px' />
+    </Row>
+  </Block>
 )
 
 Registration.propTypes = {

@@ -1,5 +1,7 @@
+import gql from 'graphql-tag'
 import { auth } from '../../../actions/user'
 import * as actions from '../constants/login'
+import { init } from '../../../actions/init'
 
 export function change(field, value) {
   return {
@@ -10,18 +12,35 @@ export function change(field, value) {
 }
 
 export function login() {
-  return async (dispatch, getState, { post }) => {
+  return async (dispatch, getState, client) => {
     const { email, password } = getState().auth.login
 
-    const { result, response } = await post('users/auth', { json: { email, password } })
+    const { data } = await client.mutate({
+      mutation: gql`
+        mutation loginUser($email: String!, $password: String!) {
+          loginUser(email: $email, password: $password) {
+            token { id, email, token }
+            errors {
+              key
+              message
+            }
+          }
+        }
+      `,
+      variables: {
+        email,
+        password,
+      },
+    })
 
-    if (response.ok) {
-      dispatch(auth(result))
-    } else if (response.status === 422) {
+    if (data.loginUser.errors.length > 0) {
       dispatch({
         type: actions.setErrors,
-        errors: result,
+        errors: data.loginUser.errors,
       })
+    } else {
+      dispatch(auth(data.loginUser.token))
+      dispatch(init())
     }
   }
 }
