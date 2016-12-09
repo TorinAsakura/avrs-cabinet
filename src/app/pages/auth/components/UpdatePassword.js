@@ -1,129 +1,111 @@
 import React, { PropTypes } from 'react'
-import { StyleSheet } from 'elementum'
-import { ColumnLayout, RowLayout, Layout } from 'flex-layouts'
-import { intlShape, defineMessages } from 'react-intl'
+import { Column, Row, Layout } from 'flex-layouts'
+import { intlShape } from 'react-intl'
 import { Text } from 'avrs-ui/src/text'
 import { Input } from 'avrs-ui/src/input'
 import { Button } from 'avrs-ui/src/button'
 import { Condition } from 'avrs-ui/src/condition'
-
-const messages = defineMessages({
-  title: {
-    id: 'update_password.title',
-    defaultMessage: 'Update password',
-  },
-  description: {
-    id: 'update_password.description',
-    defaultMessage: 'Please enter your new password.',
-  },
-  password: {
-    id: 'update_password.password',
-    defaultMessage: 'Password',
-  },
-  passwordConfirmation: {
-    id: 'update_password.password_confirmation',
-    defaultMessage: 'Confirmation',
-  },
-  update: {
-    id: 'update_password.update',
-    defaultMessage: 'Update',
-  },
-})
-
-const styles = StyleSheet.create({
-  self: {
-    background: 'rgba(255, 255, 255, 0.95)',
-    boxShadow: '0px 1px 2px 2px rgba(0,0,0,0.05)',
-    border: '0px solid #e2e2e2',
-    margin: '5px',
-    width: '400px',
-    boxSizing: 'border-box',
-  },
-})
+import { Divider } from 'avrs-ui/src/divider'
+import { Label } from 'avrs-ui/src/label'
+import { Block } from 'avrs-ui/src/content'
 
 const UpdatePassword = ({
-  password, passwordConfirmation, intl, errors,
+  password, passwordConfirmation, errors,
   onChangePassword, onChangePasswordConfirmation, onUpdate,
 }) => (
-  <div className={styles()}>
-    <RowLayout>
+  <Block>
+    <Row>
+      <Layout basis='20px' />
+      <Layout justify='center'>
+        <Text color='black400'>
+          Изменение пароля
+        </Text>
+      </Layout>
+      <Layout basis='20px' />
       <Layout>
-        <ColumnLayout>
-          <Layout basis='35px' />
-          <Layout shrink={1} basis='100%'>
-            <RowLayout>
-              <Layout basis='30px' />
-              <Layout justify='center'>
-                <Text size='large'>
-                  {intl.formatMessage(messages.title)}
-                </Text>
+        <Divider />
+      </Layout>
+      <Layout basis='30px' />
+      <Layout>
+        <Column>
+          <Layout grow={1} />
+          <Layout basis='300px'>
+            <Row>
+              <Layout>
+                <Label>
+                  Пароль
+                </Label>
               </Layout>
-              <Layout basis='4px' />
-              <Layout justify='center'>
-                <Text size='xsmall' color='gray300'>
-                  {intl.formatMessage(messages.description)}
-                </Text>
-              </Layout>
-              <Layout basis='20px' />
+              <Layout basis='5px' />
               <Layout>
                 <Input
                   type='password'
                   value={password}
-                  placeholder={intl.formatMessage(messages.password)}
-                  invalid={errors.password}
+                  invalid={errors.password && errors.password.value}
                   onChange={onChangePassword}
                 />
               </Layout>
-              <Condition match={errors.password}>
-                <RowLayout>
+              <Condition match={errors.password && errors.password.value}>
+                <Row>
                   <Layout basis='5px' />
                   <Layout>
                     <Text color='red400' size='xsmall'>
-                      {errors.password}
+                      {errors.password && errors.password.value}
                     </Text>
                   </Layout>
-                </RowLayout>
+                </Row>
               </Condition>
-              <Layout basis='15px' />
+              <Layout basis='16px' />
+              <Layout>
+                <Label>
+                  Повторите пароль
+                </Label>
+              </Layout>
+              <Layout basis='5px' />
               <Layout>
                 <Input
                   type='password'
                   value={passwordConfirmation}
-                  placeholder={intl.formatMessage(messages.passwordConfirmation)}
-                  invalid={errors.passwordConfirmation}
+                  invalid={errors.password && errors.password.confirmation}
                   onChange={onChangePasswordConfirmation}
                 />
               </Layout>
-              <Condition match={errors.passwordConfirmation}>
-                <RowLayout>
+              <Condition match={errors.password && errors.password.confirmation}>
+                <Row>
                   <Layout basis='5px' />
                   <Layout>
                     <Text color='red400' size='xsmall'>
-                      {errors.passwordConfirmation}
+                      {errors.password && errors.password.confirmation}
                     </Text>
                   </Layout>
-                </RowLayout>
+                </Row>
               </Condition>
-              <Layout basis='15px' />
-              <Layout>
-                <ColumnLayout>
-                  <Layout grow={1} />
-                  <Layout>
-                    <Button onClick={onUpdate}>
-                      {intl.formatMessage(messages.update)}
-                    </Button>
-                  </Layout>
-                  <Layout grow={1} />
-                </ColumnLayout>
-              </Layout>
-              <Layout basis='30px' />
-            </RowLayout>
+            </Row>
           </Layout>
-          <Layout basis='35px' />
-        </ColumnLayout>
+          <Layout grow={1} />
+        </Column>
       </Layout>
-    </RowLayout>
-  </div>
+      <Layout basis='30px' />
+      <Layout>
+        <Column>
+          <Layout grow={1} />
+          <Layout basis='200px'>
+            <Button
+              fill
+              shadow
+              rounded
+              color='green'
+              onClick={onUpdate}
+            >
+              Изменить
+            </Button>
+          </Layout>
+          <Layout grow={1} />
+        </Column>
+      </Layout>
+      <Layout basis='30px' />
+    </Row>
+  </Block>
 )
 
 UpdatePassword.propTypes = {

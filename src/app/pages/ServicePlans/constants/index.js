@@ -1,0 +1,7 @@
+export const load = '@@avrs-cabinet/servicePlans/LOAD'
+export const select = '@@avrs-cabinet/servicePlans/SELECT'
+export const changePlan = '@@avrs-cabinet/servicePlans/CHANGE_PLAN'
+export const changePeriod = '@@avrs-cabinet/servicePlans/CHANGE_PERIOD'
+export const changeTime = '@@avrs-cabinet/servicePlans/CHANGE_TIME'
+export const changeCPU = '@@avrs-cabinet/servicePlans/CHANGE_CPU'
+export const changeMemory = '@@avrs-cabinet/servicePlans/CHANGE_MEMORY'

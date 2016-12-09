@@ -8,6 +8,7 @@ export default connect(
     email: state.auth.registration.email,
     password: state.auth.registration.password,
     passwordConfirmation: state.auth.registration.passwordConfirmation,
+    inviteCode: state.auth.registration.inviteCode,
     errors: state.auth.registration.errors,
   }),
   dispatch => ({
@@ -16,6 +17,7 @@ export default connect(
     onChangeLastName: value => dispatch(change('lastName', value)),
     onChangePassword: value => dispatch(change('password', value)),
     onChangePasswordConfirmation: value => dispatch(change('passwordConfirmation', value)),
+    onChangeInviteCode: value => dispatch(change('inviteCode', value)),
     onRegister: () => dispatch(register()),
-  })
+  }),
 )(injectIntl(Registration))

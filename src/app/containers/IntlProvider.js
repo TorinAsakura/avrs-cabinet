@@ -27,5 +27,5 @@ export default connect(
   state => ({
     locale: state.intl.locale,
     messages: state.intl.messages,
-  })
+  }),
 )(IntlProviderContainer)

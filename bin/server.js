@@ -7,7 +7,7 @@ const app = new Express()
 
 app.use(serveStatic(path.resolve(__dirname, '../public')))
 
-app.listen(3000, error => {
+app.listen(3000, (error) => {
   if (error) {
     throw error
   }

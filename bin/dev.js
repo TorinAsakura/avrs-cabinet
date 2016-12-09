@@ -11,12 +11,22 @@ import * as config from '../config/webpack/dev'
 const app = new Express()
 const compiler = webpack([config])
 
+app.post('/url-to-submit', (req, res) => {
+  console.log(req)
+  res.send()
+})
+
+app.get('/url-to-submit', (req, res) => {
+  console.log(req)
+  res.send()
+})
+
 app.use(devMiddleware(compiler, { noInfo: true }))
 app.use(hotMiddleware(compiler))
 
 app.use(serveStatic(path.resolve(__dirname, '../public')))
 
-app.listen(3030, error => {
+app.listen(3030, (error) => {
   if (error) {
     throw error
   }

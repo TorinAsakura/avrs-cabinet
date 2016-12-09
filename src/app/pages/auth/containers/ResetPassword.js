@@ -11,5 +11,5 @@ export default connect(
   dispatch => ({
     onChangeEmail: value => dispatch(change('email', value)),
     onReset: () => dispatch(reset()),
-  })
+  }),
 )(injectIntl(ResetPassword))

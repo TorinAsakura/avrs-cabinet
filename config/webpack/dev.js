@@ -1,7 +1,10 @@
 import path from 'path'
 import webpack from 'webpack'
+import nested from 'jss-nested'
+import camelCase from 'jss-camel-case'
+import autoprefixer from 'autoprefixer'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import CssResolvePlugin from 'elementum/lib/webpack/css-resolve-plugin'
+import CssResolvePlugin from 'elementum-tools/lib/webpack/css-resolve-plugin'
 
 export const entry = [
   'babel-polyfill',
@@ -16,16 +19,11 @@ export const output = {
 }
 
 export const module = {
-  loaders: [
+  rules: [
     {
       test: /\.js?$/,
-      loader: 'elementum/lib/webpack/loader',
-      exclude: /node_modules/,
-    },
-    {
-      test: /\.js?$/,
-      loader: 'babel',
-      exclude: /node_modules/,
+      loader: 'babel-loader',
+      exclude: /node_modules\/(?!avrs-ui)/,
       query: {
         babelrc: false,
         presets: [
@@ -34,8 +32,12 @@ export const module = {
           'react',
         ],
         plugins: [
-          ['elementum/lib/babel/plugin', {
-            rootPath: './src',
+          ['elementum-tools/lib/babel/plugin', {
+            alias: {
+              AvrsCabinet: 'src',
+              AvrsUI: 'node_modules/avrs-ui/src',
+            },
+            extract: true,
           }],
           'react-hot-loader/babel',
           'transform-runtime',
@@ -44,40 +46,28 @@ export const module = {
     },
     {
       test: /\.css$/,
-      loaders: ['style-loader', 'css-loader', 'postcss-loader'],
+      use: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader',
+      ],
+    },
+    {
+      test: /\.jss$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader',
+        'jss-loader',
+      ],
     },
     {
       test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-      loader: 'file?name=[path][name].[ext]',
+      loader: 'file-loader?name=[name].[ext]',
     },
     {
       test: /\.po$/,
-      loader: 'json!po?format=jed1.x',
-    },
-    {
-      test: /\.js?$/,
-      loader: 'elementum/lib/webpack/loader',
-      include: /node_modules\/avrs-ui/,
-    },
-    {
-      test: /\.js?$/,
-      loader: 'babel',
-      include: /node_modules\/avrs-ui/,
-      query: {
-        babelrc: false,
-        presets: [
-          'es2015',
-          'stage-0',
-          'react',
-        ],
-        plugins: [
-          ['elementum/lib/babel/plugin', {
-            rootPath: './',
-          }],
-          'react-hot-loader/babel',
-          'transform-runtime',
-        ],
-      },
+      loader: 'json-loader!po-loader?format=jed1.x',
     },
   ],
 }
@@ -90,6 +80,27 @@ export const plugins = [
     template: path.resolve(__dirname, 'index.ejs'),
   }),
   new webpack.ProvidePlugin({
-    fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+    fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
+  }),
+  new webpack.DefinePlugin({
+    'process.env.API_URL': JSON.stringify('http://api.stage.aversis.net/'),
+  }),
+  new webpack.LoaderOptionsPlugin({
+    options: {
+      jssLoader: {
+        plugins: [
+          nested(),
+          camelCase(),
+        ],
+      },
+      postcss: {
+        plugins: autoprefixer({
+          browsers: [
+            '>2%',
+            'last 2 versions',
+          ],
+        }),
+      },
+    },
   }),
 ]
