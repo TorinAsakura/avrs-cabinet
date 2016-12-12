@@ -7,6 +7,7 @@ import beginning from '../pages/beginning/routes'
 import servicePlans from '../pages/ServicePlans/routes'
 import money from '../pages/money/routes'
 import network from '../pages/network/routes'
+import support from '../pages/support/routes'
 
 export default function getRoutes(store) {
   return {
@@ -23,6 +24,7 @@ export default function getRoutes(store) {
           servicePlans(store),
           money(store),
           network(store),
+          ...support(store),
         ],
       },
     ],

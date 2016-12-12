@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Column, Row, Layout } from 'flex-layouts'
-import { Link } from 'avrs-ui/src/link'
+import { Link, RouteLink } from 'avrs-ui/src/link'
 import { Text } from 'avrs-ui/src/text'
 
 const Footer = ({ landingUrl }) => (
@@ -45,7 +45,7 @@ const Footer = ({ landingUrl }) => (
           </Layout>
           <Layout basis='15px' />
           <Layout>
-            <Link href={`${landingUrl}/`}>
+            <RouteLink to='/support'>
               <Text
                 color='gray250'
                 size='xsmall'
@@ -53,7 +53,7 @@ const Footer = ({ landingUrl }) => (
               >
                 Поддержка
               </Text>
-            </Link>
+            </RouteLink>
           </Layout>
         </Column>
       </Layout>
