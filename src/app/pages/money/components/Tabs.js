@@ -16,6 +16,11 @@ const Tabs = () => (
           Реферальная сеть
         </TabRouteLink>
       </Layout>
+      <Layout>
+        <TabRouteLink to='/money/operations_history'>
+          История операций
+        </TabRouteLink>
+      </Layout>
     </Column>
   </Block>
 )

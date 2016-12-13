@@ -35,29 +35,16 @@ export function load(forceFetch = false) {
             firstName
             lastName
             balance
+            salesBalance
             inviteCode
-            plan {
-              id,
-              type,
-              name,
-              time,
-              price,
-              period,
-              profitability,
-              profitabilityPerDay,
-              profitabilityPerHour,
-              profit,
-              amount,
-              memory,
-              cpu {
-                from,
-                to
-              },
-              expireAt
-            }
+            referals
+            status
+            createdAt
             activations {
+              id
+              status
               startAt
-              expireAt
+              leftTime
               servicePlan {
                 name
               }

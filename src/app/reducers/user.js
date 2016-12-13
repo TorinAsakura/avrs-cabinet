@@ -43,6 +43,7 @@ export default createReducer(initialState, {
     ...state,
     ...user,
     isNew: user.status === 'NEW',
+    registeredAt: moment(new Date(user.createdAt)).format('YYYY/MM/DD'),
     activations: user.activations.sort(sortActivations).map(formatActivation),
   }),
   [actions.updateActivation]: (state, { activation }) => ({

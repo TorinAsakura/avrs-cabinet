@@ -19,6 +19,12 @@ export function init() {
             inviteCode
             referals
             status
+            createdAt
+            sponsor {
+              id
+              firstName
+              lastName
+            }
             activations {
               id
               status

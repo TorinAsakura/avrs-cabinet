@@ -2,6 +2,7 @@ import React from 'react'
 import { Column, Row, Layout } from 'flex-layouts'
 import { Block } from 'avrs-ui/src/content'
 import { Text, Space } from 'avrs-ui/src/text'
+import { RouteLink } from 'avrs-ui/src/link'
 
 const names = {
   Basis: 'Базис',
@@ -31,12 +32,14 @@ const Activation = ({ servicePlan = {}, leftTime }) => (
       <Layout>
         <Column>
           <Layout>
-            <Text
-              color='blue400'
-              size='xsmall'
-            >
-              Продлить
-            </Text>
+            <RouteLink to='/service_plans'>
+              <Text
+                color='blue400'
+                size='xsmall'
+              >
+                Продлить
+              </Text>
+            </RouteLink>
             <Space />
             <Text
               color='blue400'

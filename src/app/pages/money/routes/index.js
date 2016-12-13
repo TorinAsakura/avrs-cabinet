@@ -3,6 +3,7 @@ import { load as loadReferal } from '../actions/referal'
 import Money from '../containers/Money'
 import Rental from '../containers/Rental'
 import Referal from '../containers/Referal'
+import OperationsHistory from '../components/OperationsHistory'
 
 export default function getRoutes(store) {
   return {
@@ -28,6 +29,9 @@ export default function getRoutes(store) {
     }, {
       path: 'bonuses',
       component: Rental,
+    }, {
+      path: 'operations_history',
+      component: OperationsHistory,
     }],
   }
 }

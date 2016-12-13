@@ -2,6 +2,7 @@ import React from 'react'
 import { Column, Row, Layout } from 'flex-layouts'
 import { Block } from 'avrs-ui/src/content'
 import { Text, Space } from 'avrs-ui/src/text'
+import { RouteLink } from 'avrs-ui/src/link'
 
 const Sales = ({ salesBalance }) => (
   <Block
@@ -24,12 +25,14 @@ const Sales = ({ salesBalance }) => (
       <Layout>
         <Column>
           <Layout>
-            <Text
-              color='blue400'
-              size='xsmall'
-            >
-              Деньги
-            </Text>
+            <RouteLink to='/money'>
+              <Text
+                color='blue400'
+                size='xsmall'
+              >
+                Деньги
+              </Text>
+            </RouteLink>
             <Space />
             <Text
               color='blue400'

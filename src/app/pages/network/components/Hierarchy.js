@@ -8,7 +8,6 @@ const Hierarchy = ({ children, data = {}, router }) => (
   <Row>
     <Layout>
       <Block
-        offset
         shadow
       >
         <Condition match={data.id}>
