@@ -21,7 +21,7 @@
   "devDependencies": {
     "apollo-client": "^0.5.1",
     "autoprefixer": "^6.3.7",
-    "avrs-ui": "git+https://github.com/AtlantisUnited/avrs-ui.git#feature/landing",
+    "avrs-ui": "git+https://github.com/AtlantisUnited/avrs-ui.git",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.9.0",
@@ -58,7 +58,7 @@
     "react-hot-loader": "^3.0.0-beta.2",
     "react-intl": "^2.1.5",
     "react-redux": "^4.4.5",
-    "react-router": "^2.8.1",
+    "react-router": "^3.0.0",
     "redux": "^3.5.2",
     "redux-localstorage": "^1.0.0-rc5",
     "redux-localstorage-filter": "^0.1.1",

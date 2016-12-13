@@ -12,6 +12,7 @@ import auth from '../pages/auth/reducers'
 import servicePlans from '../pages/ServicePlans/reducers'
 import money from '../pages/money/reducers'
 import network from '../pages/network/reducers'
+import support from '../pages/support/reducers'
 
 const reducers = combineReducers({
   apollo: client.reducer(),
@@ -26,6 +27,7 @@ const reducers = combineReducers({
   servicePlans,
   money,
   network,
+  support,
 })
 
 export default compose(

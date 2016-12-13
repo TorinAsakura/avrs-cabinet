@@ -1,9 +1,9 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import storeShape from 'react-redux/lib/utils/storeShape'
-import { ReduxRouter } from 'redux-router'
 import { AppContainer } from 'react-hot-loader'
 import IntlProvider from './IntlProvider'
+import ReduxRouter from './ReduxRouter'
 import Preload from './Preload'
 import getRoutes from '../routes'
 

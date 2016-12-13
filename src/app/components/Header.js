@@ -6,7 +6,7 @@ import { Item } from 'avrs-ui/src/navigation'
 import { AccountIcon, LogOutIcon } from 'avrs-ui/src/icons'
 import { Condition } from 'avrs-ui/src/condition'
 import { Text, Space } from 'avrs-ui/src/text'
-import NavLink from './NavLink'
+import { NavLink } from 'avrs-ui/src/link'
 
 const Header = ({ firstName, lastName, balance, isNew, history }) => (
   <Column align='center'>
