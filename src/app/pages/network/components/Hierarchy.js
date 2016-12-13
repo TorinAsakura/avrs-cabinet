@@ -4,7 +4,7 @@ import { Block } from 'avrs-ui/src/content'
 import { Condition } from 'avrs-ui/src/condition'
 import { Network } from 'avrs-ui/src/network'
 
-const Hierarchy = ({ children, data = {}, history }) => (
+const Hierarchy = ({ children, data = {}, router }) => (
   <Row>
     <Layout>
       <Block
@@ -15,7 +15,7 @@ const Hierarchy = ({ children, data = {}, history }) => (
           <Network
             width={924}
             data={data}
-            onClick={user => history.push(`/network/tree/${user.id}/stat`)}
+            onClick={user => router.push(`/network/tree/${user.id}/stat`)}
           />
         </Condition>
       </Block>
