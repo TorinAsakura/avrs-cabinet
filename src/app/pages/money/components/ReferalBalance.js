@@ -2,6 +2,7 @@ import React from 'react'
 import { Column, Row, Layout } from 'flex-layouts'
 import { Block } from 'avrs-ui/src/content'
 import { Text, Space } from 'avrs-ui/src/text'
+import { RouteLink } from 'avrs-ui/src/link'
 
 const ReferalBalance = ({ balance = 0 }) => (
   <Block
@@ -24,19 +25,21 @@ const ReferalBalance = ({ balance = 0 }) => (
       <Layout>
         <Column>
           <Layout>
-            <Text
-              color='blue400'
-              size='xsmall'
-            >
-              Вывести на основной
-            </Text>
-            <Space />
-            <Text
-              color='blue400'
-              size='xsmall'
-            >
-              &#10095;
-            </Text>
+            <RouteLink to='/transfer/internal'>
+              <Text
+                color='blue400'
+                size='xsmall'
+              >
+                Вывести на основной
+              </Text>
+              <Space />
+              <Text
+                color='blue400'
+                size='xsmall'
+              >
+                &#10095;
+              </Text>
+            </RouteLink>
           </Layout>
         </Column>
       </Layout>

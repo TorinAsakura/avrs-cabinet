@@ -43,7 +43,7 @@ const Balance = ({ balance = 0 }) => (
           </Layout>
           <Layout basis='25px' />
           <Layout>
-            <RouteLink to='/money'>
+            <RouteLink to='/transfer/external'>
               <Text
                 color='blue400'
                 size='xsmall'

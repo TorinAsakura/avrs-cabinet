@@ -37,7 +37,7 @@ export function reset() {
         errors: data.resetUserPassword.errors,
       })
     } else {
-      window.location.hash = '/auth/login'
+      window.location.href = '/auth/login'
     }
   }
 }

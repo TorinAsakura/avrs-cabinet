@@ -14,19 +14,19 @@ export const entry = [
 
 export const output = {
   path: path.join(__dirname, '..', '..', 'public'),
-  filename: '[name].js',
+  filename: '/[name].js',
 }
 
 export const module = {
   rules: [
     {
       test: /\.js?$/,
-      loader: 'babel-loader',
       exclude: /node_modules\/(?!avrs-ui)/,
+      loader: 'babel-loader',
       options: {
         babelrc: false,
         presets: [
-          'es2015',
+          ['es2015', { modules: false }],
           'stage-0',
           'react',
         ],
@@ -38,7 +38,6 @@ export const module = {
             },
             extract: true,
           }],
-          'transform-runtime',
         ],
       },
     },
@@ -65,7 +64,7 @@ export const module = {
     },
     {
       test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-      loader: 'file-loader?name=[name].[ext]',
+      loader: 'file-loader?/name=[name].[ext]',
     },
     {
       test: /\.po$/,
@@ -74,16 +73,21 @@ export const module = {
   ],
 }
 
+export const resolve = {
+  plugins: [
+    new CssResolvePlugin(),
+  ],
+}
+
 export const plugins = [
-  new CssResolvePlugin(),
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: path.resolve(__dirname, 'index.ejs'),
   }),
-  new ExtractTextPlugin('[name].css'),
+  new ExtractTextPlugin('/[name].css'),
   new webpack.DefinePlugin({
     'process.env.API_URL': JSON.stringify('http://api.stage.aversis.net/'),
-    // 'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env.NODE_ENV': JSON.stringify('production'),
   }),
   new webpack.ProvidePlugin({
     fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',

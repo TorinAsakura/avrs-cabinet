@@ -56,4 +56,8 @@ export default createReducer(initialState, {
       return item
     }),
   }),
+  [actions.update]: (state, { fields }) => ({
+    ...state,
+    ...fields,
+  }),
 })

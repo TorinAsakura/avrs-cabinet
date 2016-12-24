@@ -1,7 +1,9 @@
+import { loadStat } from '../actions'
 import Home from '../containers/Home'
 
-export default function getRoutes() {
-  return {
-    component: Home,
-  }
-}
+export default ({ dispatch }) => ({
+  component: Home,
+  onEnter() {
+    dispatch(loadStat())
+  },
+})

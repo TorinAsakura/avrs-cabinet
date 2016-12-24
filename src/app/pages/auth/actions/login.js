@@ -1,7 +1,6 @@
 import gql from 'graphql-tag'
 import { auth } from '../../../actions/user'
 import * as actions from '../constants/login'
-import { init } from '../../../actions/init'
 
 export function change(field, value) {
   return {
@@ -40,7 +39,8 @@ export function login() {
       })
     } else {
       dispatch(auth(data.loginUser.token))
-      dispatch(init())
+
+      window.location.href = '/'
     }
   }
 }

@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Column, Row, Layout } from 'flex-layouts'
 import { Condition } from 'avrs-ui/src/condition'
-import Payments from '../components/Payments'
-import NetDynamics from '../components/NetDynamics'
-import Balance from '../../money/components/Balance'
+import Balance from '../../money/containers/Balance'
 import Activation from './Activation'
+import Payments from './Payments'
+import Network from './Network'
 
 const Home = ({ isNew = true }) => (
   <Condition match={!isNew}>
@@ -30,7 +30,7 @@ const Home = ({ isNew = true }) => (
           </Layout>
           <Layout basis='20px' />
           <Layout>
-            <NetDynamics />
+            <Network />
           </Layout>
         </Row>
       </Layout>

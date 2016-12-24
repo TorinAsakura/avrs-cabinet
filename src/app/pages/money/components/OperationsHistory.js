@@ -4,6 +4,17 @@ import { Block } from 'avrs-ui/src/content'
 import { Button } from 'avrs-ui/src/button'
 import { Table, Row as TableRow, Cell } from 'avrs-ui/src/table'
 
+const directions = {
+  INTERNAL: 'Перевод между счетами',
+  EXTERNAL: 'Вывод средств',
+}
+
+const statuses = {
+  SENT: 'Отправлено',
+  PERFORMED: 'Выполнено',
+  NOT_PERFORMED: 'Не выполнено',
+}
+
 const OperationsHistory = ({ operations = [] }) => (
   <Block
     shadow
@@ -18,25 +29,13 @@ const OperationsHistory = ({ operations = [] }) => (
               Дата
             </Cell>
             <Cell>
-              Сумма
-            </Cell>
-            <Cell>
               Тип
             </Cell>
             <Cell>
-              Процент
-            </Cell>
-            <Cell>
-              Участник
-            </Cell>
-            <Cell>
-              Пакет
+              Сумма
             </Cell>
             <Cell>
               Статус
-            </Cell>
-            <Cell>
-              Период
             </Cell>
           </TableRow>
           {operations.map((operation, index) => (
@@ -45,16 +44,14 @@ const OperationsHistory = ({ operations = [] }) => (
                 {operation.date}
               </Cell>
               <Cell>
+                {directions[operation.direction]}
+              </Cell>
+              <Cell>
                 {operation.amount}
               </Cell>
-              <Cell />
-              <Cell />
-              <Cell />
               <Cell>
-                {operation.package}
+                {statuses[operation.status]}
               </Cell>
-              <Cell />
-              <Cell />
             </TableRow>
           ))}
         </Table>

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { logout } from '../actions/user'
 import Header from '../components/Header'
 
 export default connect(
@@ -7,5 +8,8 @@ export default connect(
     lastName: state.user.lastName,
     balance: state.user.balance,
     isNew: state.user.isNew,
+  }),
+  dispatch => ({
+    onLogout: () => dispatch(logout()),
   }),
 )(Header)

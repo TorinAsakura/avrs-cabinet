@@ -32,6 +32,17 @@ services:
     ports:
       - "3040:3030"
 
+  dev-local:
+    image: node
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    entrypoint: npm run dev
+    environment:
+      - API_URL=http://localhost:3000/
+    ports:
+      - "3040:3030"
+
   build:
     image: node
     working_dir: /workspace

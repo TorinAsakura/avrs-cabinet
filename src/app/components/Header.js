@@ -8,39 +8,39 @@ import { Condition } from 'avrs-ui/src/condition'
 import { Text, Space } from 'avrs-ui/src/text'
 import { NavLink } from 'avrs-ui/src/link'
 
-const Header = ({ firstName, lastName, balance, isNew, history }) => (
+const Header = ({ firstName, lastName, balance, isNew, onLogout }) => (
   <Column align='center'>
     <Layout basis='25px' />
     <Layout align='center'>
-      <Link to={isNew ? '/beginning' : '/'}>
+      <Link to='/'>
         <Logo height={24} />
       </Link>
     </Layout>
     <Layout basis='35px' />
     <Condition match={isNew}>
       <Layout>
-        <NavLink to='/beginning' history={history}>
+        <NavLink to='/'>
           Начало работы
         </NavLink>
       </Layout>
     </Condition>
     <Condition match={!isNew}>
       <Layout>
-        <NavLink to='/' history={history}>
+        <NavLink to='/'>
           Главная
         </NavLink>
       </Layout>
     </Condition>
     <Layout basis='30px' />
     <Layout>
-      <NavLink to='/service_plans' history={history}>
+      <NavLink to='/service_plans'>
         Тарифы
       </NavLink>
     </Layout>
     <Layout basis='30px' />
     <Condition match={!isNew}>
       <Layout>
-        <NavLink to='/money' history={history}>
+        <NavLink to='/money'>
           Деньги
         </NavLink>
       </Layout>
@@ -50,7 +50,7 @@ const Header = ({ firstName, lastName, balance, isNew, history }) => (
     </Condition>
     <Condition match={!isNew}>
       <Layout>
-        <NavLink to='/network' history={history}>
+        <NavLink to='/network'>
           Сеть
         </NavLink>
       </Layout>
@@ -63,21 +63,31 @@ const Header = ({ firstName, lastName, balance, isNew, history }) => (
         </Text>
       </Layout>
     </Condition>
-    <Layout basis='15px' />
+    <Layout basis='30px' />
     <Layout>
-      <Item to='/profile'>
-        <AccountIcon />
-        <Space count={2} />
-        {firstName}
-        <Space />
-        {lastName}
-      </Item>
+      <NavLink to='/profile'>
+        <Column align='center'>
+          <Layout>
+            <AccountIcon height={24} />
+            <Space />
+            <Space />
+          </Layout>
+          <Layout>
+            <span>
+              {firstName}
+              <Space />
+              {lastName}
+            </span>
+          </Layout>
+        </Column>
+      </NavLink>
     </Layout>
+    <Layout basis='30px' />
     <Layout>
       <Item
         plain
         border='left'
-        to='/auth/logout'
+        onClick={onLogout}
       >
         <LogOutIcon />
       </Item>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Column, Row, Layout } from 'flex-layouts'
 import Rates from './Rates'
+import License from './License'
 import Activations from './Activations'
 
 const ServicePlans = () => (
@@ -11,6 +12,10 @@ const ServicePlans = () => (
         <Layout>
           <Activations />
         </Layout>
+        <Layout>
+          <License />
+        </Layout>
+        <Layout basis='20px' />
         <Layout>
           <Rates />
         </Layout>

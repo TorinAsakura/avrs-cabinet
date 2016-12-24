@@ -14,3 +14,7 @@ svg {
 #container {
   height: 100%;
 }
+
+.tether-element {
+  z-index: 9;
+}

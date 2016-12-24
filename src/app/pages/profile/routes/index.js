@@ -1,7 +1,8 @@
+import { sync } from '../actions'
 import Profile from '../containers/Profile'
 import GeneralInformation from '../containers/GeneralInformation'
 
-export default function getRoutes() {
+export default function getRoutes({ dispatch }) {
   return {
     path: 'profile',
     component: Profile,
@@ -9,6 +10,8 @@ export default function getRoutes() {
       if (location.pathname === '/profile') {
         replace('/profile/general_information')
       }
+
+      dispatch(sync())
     },
     childRoutes: [
       {

@@ -17,10 +17,8 @@ render(
 
 if (module.hot) {
   module.hot.accept('./app/containers/Root', () => {
-    const HotRoot = require('./app/containers/Root').default // eslint-disable-line global-require
-
     render(
-      <HotRoot store={store} />,
+      <Root store={store} />,
       document.getElementById('container'),
     )
   })
