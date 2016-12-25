@@ -6,10 +6,11 @@ const initialState = {
   period: 90,
   active: null,
   items: [],
+  license: '',
 }
 
 const getActive = (servicePlans, type, period) => {
-  const [active] = servicePlans.filter(plan => plan.id.includes(type) && plan.period === period)
+  const [active] = servicePlans.filter(plan => plan.type === type && plan.period === period)
 
   return active
 }
@@ -28,6 +29,7 @@ export default createReducer(initialState, {
   }),
   [actions.select]: (state, { plan, period }) => ({
     ...state,
+    period,
     type: plan,
     active: getActive(state.items, plan, period),
   }),
@@ -38,7 +40,7 @@ export default createReducer(initialState, {
       return state
     }
 
-    return { ...state, active }
+    return { ...state, active, period }
   },
   [actions.changeTime]: (state, { time }) => {
     const active = getActiveByField(state.items, state.period, 'time', time)
@@ -47,7 +49,7 @@ export default createReducer(initialState, {
       return state
     }
 
-    return { ...state, type: active.id.substr(1), active }
+    return { ...state, type: active.type, active }
   },
   [actions.changeMemory]: (state, { memory }) => {
     const active = getActiveByField(state.items, state.period, 'memory', memory * 1024)
@@ -56,22 +58,16 @@ export default createReducer(initialState, {
       return state
     }
 
-    return { ...state, type: active.id.substr(1), active }
+    return { ...state, type: active.type, active }
   },
   [actions.changeCPU]: (state, { cpu }) => {
-    const mapping = {
-      5: 'Basis',
-      15: 'Standard',
-      20: 'Premium',
-      40: 'Business',
-    }
-
-    const active = getActiveByField(state.items, state.period, 'name', mapping[cpu])
+    const active = getActiveByField(state.items, state.period, 'cpu', cpu)
 
     if (!active) {
       return state
     }
 
-    return { ...state, type: active.id.substr(1), active }
+    return { ...state, type: active.type, active }
   },
+  [actions.changeLicense]: (state, { license }) => ({ ...state, license }),
 })

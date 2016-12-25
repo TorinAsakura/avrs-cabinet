@@ -17,13 +17,19 @@ export default function getRoutes(store) {
       {
         path: '/',
         component: App,
-        indexRoute: home(store),
+        getIndexRoute: (nextState, callback) => {
+          if (store.getState().user.isNew) {
+            callback(null, beginning(store))
+          } else {
+            callback(null, home(store))
+          }
+        },
         childRoutes: [
           beginning(store),
           profile(store),
           servicePlans(store),
-          money(store),
           network(store),
+          ...money(store),
           ...support(store),
         ],
       },

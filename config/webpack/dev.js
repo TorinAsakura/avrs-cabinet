@@ -15,34 +15,39 @@ export const entry = [
 
 export const output = {
   path: '/',
-  filename: '[name].js',
+  filename: '/[name].js',
 }
 
 export const module = {
   rules: [
     {
       test: /\.js?$/,
-      loader: 'babel-loader',
       exclude: /node_modules\/(?!avrs-ui)/,
-      query: {
-        babelrc: false,
-        presets: [
-          'es2015',
-          'stage-0',
-          'react',
-        ],
-        plugins: [
-          ['elementum-tools/lib/babel/plugin', {
-            alias: {
-              AvrsCabinet: 'src',
-              AvrsUI: 'node_modules/avrs-ui/src',
-            },
-            extract: true,
-          }],
-          'react-hot-loader/babel',
-          'transform-runtime',
-        ],
-      },
+      use: [
+        {
+          loader: 'react-hot-loader/webpack',
+        },
+        {
+          loader: 'babel-loader',
+          query: {
+            babelrc: false,
+            presets: [
+              ['es2015', { modules: false }],
+              'stage-0',
+              'react',
+            ],
+            plugins: [
+              ['elementum-tools/lib/babel/plugin', {
+                alias: {
+                  AvrsCabinet: 'src',
+                  AvrsUI: 'node_modules/avrs-ui/src',
+                },
+                extract: true,
+              }],
+            ],
+          },
+        },
+      ],
     },
     {
       test: /\.css$/,
@@ -63,7 +68,7 @@ export const module = {
     },
     {
       test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-      loader: 'file-loader?name=[name].[ext]',
+      loader: 'file-loader?name=/[name].[ext]',
     },
     {
       test: /\.po$/,
@@ -72,8 +77,13 @@ export const module = {
   ],
 }
 
+export const resolve = {
+  plugins: [
+    new CssResolvePlugin(),
+  ],
+}
+
 export const plugins = [
-  new CssResolvePlugin(),
   new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
     filename: 'index.html',
@@ -83,7 +93,7 @@ export const plugins = [
     fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
   }),
   new webpack.DefinePlugin({
-    'process.env.API_URL': JSON.stringify('http://api.stage.aversis.net/'),
+    'process.env.API_URL': JSON.stringify(process.env.API_URL || 'http://api.stage.aversis.net/'),
   }),
   new webpack.LoaderOptionsPlugin({
     options: {

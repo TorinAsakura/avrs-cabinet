@@ -21,6 +21,9 @@ const Rent = ({ operations = [] }) => (
               Сумма
             </Cell>
             <Cell>
+              Время
+            </Cell>
+            <Cell>
               Тип
             </Cell>
             <Cell>
@@ -47,7 +50,9 @@ const Rent = ({ operations = [] }) => (
               <Cell>
                 {operation.amount}
               </Cell>
-              <Cell />
+              <Cell>
+                {operation.time}
+              </Cell>
               <Cell />
               <Cell />
               <Cell>

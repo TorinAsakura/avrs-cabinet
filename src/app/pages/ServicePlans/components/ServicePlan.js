@@ -8,7 +8,7 @@ import { Link } from 'avrs-ui/src/link'
 
 const ServicePlan = ({
   active, color, name, month, quarter, halfYear,
-  year, onMonth, onQuarter, onHalfYear, onYear, onBuy,
+  year, onMonth, onQuarter, onHalfYear, onYear, onOpenProduct,
 }) => (
   <Block shadow>
     <Row>
@@ -135,7 +135,7 @@ const ServicePlan = ({
                   color='black400'
                   onClick={onMonth}
                 >
-                  {month.cpu.from}
+                  {month.cpu}
                 </Cell>
                 <Cell
                   selectable
@@ -143,7 +143,7 @@ const ServicePlan = ({
                   color='black400'
                   onClick={onQuarter}
                 >
-                  {quarter.cpu.from}
+                  {quarter.cpu}
                 </Cell>
                 <Cell
                   selectable
@@ -151,7 +151,7 @@ const ServicePlan = ({
                   color='black400'
                   onClick={onHalfYear}
                 >
-                  {halfYear.cpu.from}
+                  {halfYear.cpu}
                 </Cell>
                 <Cell
                   selectable
@@ -159,7 +159,7 @@ const ServicePlan = ({
                   color='black400'
                   onClick={onYear}
                 >
-                  {year.cpu.from}
+                  {year.cpu}
                 </Cell>
               </TableRow>
               <TableRow>
@@ -368,7 +368,7 @@ const ServicePlan = ({
         <Column>
           <Layout grow={1} />
           <Layout>
-            <Link onClick={onBuy}>
+            <Link onClick={onOpenProduct}>
               <Text
                 color='blue400'
                 size='small'

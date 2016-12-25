@@ -4,6 +4,7 @@ import Workspace from '../components/Workspace'
 import Divider from '../components/Divider'
 import Footer from '../components/Footer'
 import Header from './Header'
+import Messages from './Messages'
 
 const App = ({ children, history }) => (
   <Row fill>
@@ -12,6 +13,9 @@ const App = ({ children, history }) => (
     </Layout>
     <Layout>
       <Divider />
+    </Layout>
+    <Layout>
+      <Messages />
     </Layout>
     <Layout shrink={1} grow={1}>
       <Workspace>

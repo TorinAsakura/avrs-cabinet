@@ -11,20 +11,14 @@ import * as config from '../config/webpack/dev'
 const app = new Express()
 const compiler = webpack([config])
 
-app.post('/url-to-submit', (req, res) => {
-  console.log(req)
-  res.send()
-})
+const middleware = devMiddleware(compiler, { noInfo: true })
 
-app.get('/url-to-submit', (req, res) => {
-  console.log(req)
-  res.send()
-})
-
-app.use(devMiddleware(compiler, { noInfo: true }))
+app.use(middleware)
 app.use(hotMiddleware(compiler))
 
 app.use(serveStatic(path.resolve(__dirname, '../public')))
+
+app.get('*', (req, res) => res.end(middleware.fileSystem.readFileSync(`${config.output.path}index.html`)))
 
 app.listen(3030, (error) => {
   if (error) {

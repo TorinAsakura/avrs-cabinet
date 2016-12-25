@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 // import { select } from '../actions'
-import { changePeriod, changeTime, changeCPU, changeMemory } from '../../ServicePlans/actions'
+import { changePeriod, changeTime, changeCPU, changeMemory, openProduct } from '../../ServicePlans/actions'
 import SelectRate from '../components/SelectRate'
 
 const Container = (props) => {
@@ -21,5 +21,6 @@ export default connect(
     onChangeTime: time => dispatch(changeTime(time)),
     onChangeCPU: cpu => dispatch(changeCPU(cpu)),
     onChangeMemory: memory => dispatch(changeMemory(memory)),
+    onOpenProduct: () => dispatch(openProduct()),
   }),
 )(Container)

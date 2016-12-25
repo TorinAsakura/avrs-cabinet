@@ -4,23 +4,16 @@ import { Block } from 'avrs-ui/src/content'
 import { Text, Space } from 'avrs-ui/src/text'
 import { Divider } from 'avrs-ui/src/divider'
 import { Slider } from 'avrs-ui/src/slider'
-import { RouteLink } from 'avrs-ui/src/link'
+import { Link } from 'avrs-ui/src/link'
 
 const names = {
-  Basis: 'Базис',
-  Standard: 'Стандарт',
-  Premium: 'Премиум',
-  Business: 'Бизнес',
+  basis: 'Базис',
+  standard: 'Стандарт',
+  premium: 'Премиум',
+  business: 'Бизнес',
 }
 
-const cpu = {
-  Basis: 5,
-  Standard: 15,
-  Premium: 20,
-  Business: 40,
-}
-
-const SelectRate = ({ plan, onChangePeriod, onChangeTime, onChangeCPU, onChangeMemory }) => (
+const SelectRate = ({ plan, onChangePeriod, onChangeTime, onChangeCPU, onChangeMemory, onOpenProduct }) => (
   <Block shadow>
     <Row>
       <Layout basis='15px' />
@@ -87,7 +80,7 @@ const SelectRate = ({ plan, onChangePeriod, onChangeTime, onChangeCPU, onChangeM
               <Layout>
                 <Slider
                   prefix='%'
-                  value={cpu[plan.name]}
+                  value={plan.cpu}
                   markers={[5, 15, 20, 40]}
                   onChange={onChangeCPU}
                 />
@@ -148,7 +141,7 @@ const SelectRate = ({ plan, onChangePeriod, onChangeTime, onChangeCPU, onChangeM
                   color='blue400'
                   size='small'
                 >
-                  {names[plan.name]}
+                  {names[plan.type]}
                 </Text>
                 <Space />
                 <Text
@@ -203,14 +196,14 @@ const SelectRate = ({ plan, onChangePeriod, onChangeTime, onChangeCPU, onChangeM
           </Layout>
           <Layout grow={1} />
           <Layout>
-            <RouteLink to='/service_plans'>
+            <Link onClick={onOpenProduct}>
               <Text
                 color='gray250'
                 size='small'
               >
                 Продолжить
               </Text>
-            </RouteLink>
+            </Link>
             <Space />
             <Text
               color='gray250'

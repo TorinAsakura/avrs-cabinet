@@ -14,38 +14,46 @@ export function init() {
             email
             firstName
             lastName
+            phone
+            sex
+            birthday
+            address
+            country
             balance
             salesBalance
+            referalBalance
             inviteCode
             referals
             status
+            createdAt
+            sponsor {
+              id
+              firstName
+              lastName
+            }
             activations {
               id
               status
               startAt
               leftTime
               servicePlan {
-                name
+                type
+                period
               }
             }
           }
           servicePlans {
-            id,
-            type,
-            name,
-            time,
-            price,
-            period,
-            profitability,
-            profitabilityPerDay,
-            profitabilityPerHour,
-            profit,
-            amount,
-            memory,
-            cpu {
-              from,
-              to
-            }
+            type
+            period
+            time
+            price
+            profitability
+            profitabilityPerDay
+            profitabilityPerHour
+            profit
+            amount
+            memory
+            cpu
           }
         }
       `,
@@ -60,14 +68,6 @@ export function init() {
       type: loadUser,
       user: data.user,
     })
-
-    setTimeout(() => {
-      if (getState().user.isNew === true) {
-        window.location.hash = '/beginning'
-      } else {
-        window.location.hash = '/'
-      }
-    }, 100)
 
     dispatch({
       type: actions.init,

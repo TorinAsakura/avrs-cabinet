@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import { reduxReactRouter } from 'redux-router'
-import { createHashHistory as createHistory } from 'history'
+import { createHistory } from 'history'
 import api from './middleware/api'
 import intl from './middleware/intl'
 import persistStorage from './persistStorage'
@@ -20,16 +20,6 @@ export default function configureStore(initialState) {
     if (!/^\/auth/.test(location.pathname)) {
       if (!store.getState().security.token) {
         store.history.push('/auth/login')
-      }
-    }
-
-    if (store.getState().security.token) {
-      if (location.pathname === '/' || !/^\/(money|net|beginning|service_plans)/.test(location.pathname)) {
-        if (store.getState().user.isNew) {
-          if (!/^\/auth/.test(location.pathname)) {
-            store.history.push('/beginning')
-          }
-        }
       }
     }
   })

@@ -1,4 +1,4 @@
-import { logout } from '../../../actions/user'
+import { loadLocation } from '../actions/registration'
 import Auth from '../containers/Auth'
 import Login from '../containers/Login'
 import Registration from '../containers/Registration'
@@ -17,6 +17,9 @@ export default function getRoutes({ dispatch, getState }) {
       {
         path: 'registration',
         component: Registration,
+        onEnter() {
+          dispatch(loadLocation())
+        },
       },
       {
         path: 'activate/:token',
@@ -35,12 +38,6 @@ export default function getRoutes({ dispatch, getState }) {
       {
         path: 'update_password/:token',
         component: UpdatePassword,
-      },
-      {
-        path: 'logout',
-        onEnter() {
-          dispatch(logout())
-        },
       },
     ],
   }

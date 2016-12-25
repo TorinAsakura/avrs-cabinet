@@ -1,3 +1,7 @@
 export const change = '@@avrs-cabinet/auth/registration/CHANGE'
 export const register = '@@avrs-cabinet/auth/registration/REGISTER'
 export const setErrors = '@@avrs-cabinet/auth/registration/SET_ERRORS'
+export const setLocation = '@@avrs-cabinet/auth/registration/SET_LOCATION'
+export const goToCommon = '@@avrs-cabinet/auth/registration/GO_TO_COMMON'
+export const goToPersonal = '@@avrs-cabinet/auth/registration/GO_TO_PERSONAL'
+export const clear = '@@avrs-cabinet/auth/registration/CLEAR'

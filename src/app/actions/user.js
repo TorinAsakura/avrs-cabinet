@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 import * as actions from '../constants/security'
-// import { connect, listenStat } from './communicator'
+import { update as updateUser } from '../constants/user'
 
 export function auth(data) {
   return async (dispatch) => {
@@ -18,14 +18,14 @@ export function logout() {
     })
 
     if (getState().router.location.pathname.indexOf('/auth') !== 0) {
-      window.location.hash = '/auth/login'
+      window.location.href = '/auth/login'
     }
   }
 }
 
 export function load(forceFetch = false) {
   return async (dispatch, getState, client) => {
-    const { data } = await client.query({
+    await client.query({
       forceFetch,
       query: gql`
         query {
@@ -35,29 +35,16 @@ export function load(forceFetch = false) {
             firstName
             lastName
             balance
+            salesBalance
             inviteCode
-            plan {
-              id,
-              type,
-              name,
-              time,
-              price,
-              period,
-              profitability,
-              profitabilityPerDay,
-              profitabilityPerHour,
-              profit,
-              amount,
-              memory,
-              cpu {
-                from,
-                to
-              },
-              expireAt
-            }
+            referals
+            status
+            createdAt
             activations {
+              id
+              status
               startAt
-              expireAt
+              leftTime
               servicePlan {
                 name
               }
@@ -72,9 +59,16 @@ export function load(forceFetch = false) {
     //    dispatch(listenStat())
     //  }
 
-    dispatch({
-      type: actions.load,
-      user: data.user,
-    })
+    // dispatch({
+    //  type: actions.load,
+    //  user: data.user,
+    // })
+  }
+}
+
+export function update(fields) {
+  return {
+    type: updateUser,
+    fields,
   }
 }

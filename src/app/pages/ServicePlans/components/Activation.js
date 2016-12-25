@@ -8,10 +8,10 @@ import { PlayIcon, StopIcon, LockIcon } from 'avrs-ui/src/icons'
 import ActivationAction from './ActivationAction'
 
 const names = {
-  Basis: 'Базис',
-  Standard: 'Стандарт',
-  Premium: 'Премиум',
-  Business: 'Бизнес',
+  basis: 'Базис',
+  standard: 'Стандарт',
+  premium: 'Премиум',
+  business: 'Бизнес',
 }
 
 const statuses = {
@@ -32,7 +32,7 @@ const Activation = ({ servicePlan = {}, id, status, isInactive, isActive, isStop
           <Row>
             <Layout>
               <Text size='large' color='gray400'>
-                {names[servicePlan.name]}
+                {names[servicePlan.type]}
               </Text>
             </Layout>
             <Layout basis='4px' />
