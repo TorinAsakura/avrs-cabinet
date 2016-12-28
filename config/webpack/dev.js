@@ -83,6 +83,14 @@ export const resolve = {
   ],
 }
 
+export const node = {
+  fs: 'empty',
+}
+
+export const externals = [{
+  './cptable': 'var cptable',
+}]
+
 export const plugins = [
   new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({

@@ -146,7 +146,7 @@ const Personal = ({
             <Layout basis='25px' />
             <Layout>
               <Recaptcha
-                sitekey='6Ldkrw8UAAAAALVD730V83tTVeY72KHULjPo-TvO'
+                sitekey='6Lffyg8UAAAAAIt63I-Ezl3u9gud1Ht7AwmsC1-h'
                 verifyCallback={onChangeCaptcha}
               />
             </Layout>

@@ -15,7 +15,7 @@ const statuses = {
   NOT_PERFORMED: 'Не выполнено',
 }
 
-const OperationsHistory = ({ operations = [] }) => (
+const OperationsHistory = ({ operations = [], onExportXls }) => (
   <Block
     shadow
     offset
@@ -64,6 +64,7 @@ const OperationsHistory = ({ operations = [] }) => (
               shadow
               rounded
               color='green'
+              onClick={onExportXls}
             >
               Экспорт в XLS
             </Button>

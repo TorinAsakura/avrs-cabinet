@@ -9,7 +9,7 @@ import { Text } from 'avrs-ui/src/text'
 import PaymentSuccess from './PaymentSuccess'
 import Balance from './Balance'
 
-const Internal = ({ success, balance, referalBalance, amount, onChange, onSend }) => (
+const Internal = ({ success, balance, referalBalance, amount, errors, onChange, onSend }) => (
   <Column>
     <Layout grow={1} />
     <Layout basis='924px'>
@@ -102,15 +102,15 @@ const Internal = ({ success, balance, referalBalance, amount, onChange, onSend }
                 <Layout>
                   <Column align='center'>
                     <Layout grow={1} />
-                    <Layout>
+                    <Layout basis='80px'>
                       <Text color='gray250'>
                         Сумма, €
                       </Text>
                     </Layout>
-                    <Layout basis='15px' />
                     <Layout basis='240px'>
                       <Input
                         value={amount}
+                        invalid={errors.amount}
                         onChange={onChange}
                       />
                     </Layout>
@@ -118,7 +118,19 @@ const Internal = ({ success, balance, referalBalance, amount, onChange, onSend }
                     <Layout grow={1} />
                   </Column>
                 </Layout>
-                <Layout basis='30px' />
+                <Layout basis='5px' />
+                <Layout basis='25px' justify='center'>
+                  <Condition match={errors.amount}>
+                    <Column justify='center'>
+                      <Layout basis='10px' />
+                      <Layout basis='240px'>
+                        <Text color='red400' size='xsmall'>
+                          {errors.amount}
+                        </Text>
+                      </Layout>
+                    </Column>
+                  </Condition>
+                </Layout>
                 <Layout justify='center'>
                   <Button
                     shadow

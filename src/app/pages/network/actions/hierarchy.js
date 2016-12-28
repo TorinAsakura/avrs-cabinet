@@ -41,6 +41,8 @@ export function loadReferal(id) {
         query {
           networkReferalStat (id: "${id}") {
             id
+            status
+            country
             firstName
             lastName
             salesBalance

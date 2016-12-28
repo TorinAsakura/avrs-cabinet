@@ -1,11 +1,12 @@
 import React from 'react'
 import { Column, Row, Layout } from 'flex-layouts'
+import { Condition } from 'avrs-ui/src/condition'
 import { Text, Space } from 'avrs-ui/src/text'
 import { Input } from 'avrs-ui/src/input'
 import { Label } from 'avrs-ui/src/label'
 import { Link } from 'avrs-ui/src/link'
 
-const CardMethod = ({ number, amount, onChangeNumber, onChangeAmount, onSent }) => (
+const CardMethod = ({ number, amount, onChangeNumber, errors, onChangeAmount, onSent }) => (
   <Row>
     <Layout basis='40px' />
     <Layout justify='center'>
@@ -40,9 +41,20 @@ const CardMethod = ({ number, amount, onChangeNumber, onChangeAmount, onSent }) 
             <Layout>
               <Input
                 value={number}
+                invalid={errors.number}
                 onChange={onChangeNumber}
               />
             </Layout>
+            <Condition match={errors.number}>
+              <Row>
+                <Layout basis='5px' />
+                <Layout>
+                  <Text color='red400' size='xsmall'>
+                    {errors.number}
+                  </Text>
+                </Layout>
+              </Row>
+            </Condition>
             <Layout basis='16px' />
             <Layout>
               <Label>
@@ -53,9 +65,20 @@ const CardMethod = ({ number, amount, onChangeNumber, onChangeAmount, onSent }) 
             <Layout>
               <Input
                 value={amount}
+                invalid={errors.amount}
                 onChange={onChangeAmount}
               />
             </Layout>
+            <Condition match={errors.amount}>
+              <Row>
+                <Layout basis='5px' />
+                <Layout>
+                  <Text color='red400' size='xsmall'>
+                    {errors.amount}
+                  </Text>
+                </Layout>
+              </Row>
+            </Condition>
           </Row>
         </Layout>
         <Layout grow={1} />

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 import * as actions from '../constants/security'
-import { update as updateUser } from '../constants/user'
+import { update as updateUser, activationSent, activationError } from '../constants/user'
 
 export function auth(data) {
   return async (dispatch) => {
@@ -70,5 +70,55 @@ export function update(fields) {
   return {
     type: updateUser,
     fields,
+  }
+}
+
+export function sendActivation() {
+  return async (dispatch, getState, client) => {
+    const activateUrl = `${window.location.origin}/auth/activate/`
+
+    const { data } = await client.mutate({
+      mutation: gql`
+        mutation sendActivation($activateUrl: String!) {
+          sendActivation(activateUrl: $activateUrl) {
+            success
+          }
+        }
+      `,
+      variables: {
+        activateUrl,
+      },
+    })
+
+    if (data.sendActivation.success) {
+      dispatch({
+        type: activationSent,
+      })
+    }
+  }
+}
+
+export function activate(token) {
+  return async (dispatch, getState, client) => {
+    const { data } = await client.mutate({
+      mutation: gql`
+        mutation activateUser($token: String!) {
+          activateUser(token: $token) {
+            success
+          }
+        }
+      `,
+      variables: {
+        token,
+      },
+    })
+
+    if (data.activateUser.success) {
+      window.location.href = '/'
+    } else {
+      dispatch({
+        type: activationError,
+      })
+    }
   }
 }

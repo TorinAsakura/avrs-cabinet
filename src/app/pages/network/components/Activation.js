@@ -5,10 +5,10 @@ import { Text, Space } from 'avrs-ui/src/text'
 import { RouteLink } from 'avrs-ui/src/link'
 
 const names = {
-  Basis: 'Базис',
-  Standard: 'Стандарт',
-  Premium: 'Премиум',
-  Business: 'Бизнес',
+  basis: 'Базис',
+  standart: 'Стандарт',
+  premium: 'Премиум',
+  business: 'Бизнес',
 }
 
 const Activation = ({ servicePlan = {}, leftTime }) => (
@@ -25,14 +25,14 @@ const Activation = ({ servicePlan = {}, leftTime }) => (
       </Layout>
       <Layout>
         <Text size='xsmall' color='gray400'>
-          Пакет {names[servicePlan.name]}
+          Пакет {names[servicePlan.type]}
         </Text>
       </Layout>
       <Layout basis='25px' />
       <Layout>
         <Column>
           <Layout>
-            <RouteLink to='/service_plans'>
+            <RouteLink to='/service-plans'>
               <Text
                 color='blue400'
                 size='xsmall'

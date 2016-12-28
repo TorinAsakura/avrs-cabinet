@@ -3,7 +3,7 @@ import { Row, Layout } from 'flex-layouts'
 import { Text } from 'avrs-ui/src/text'
 import OutputMethod from './OutputMethod'
 
-const OutputMethods = ({ onSelectSepa, onSelectPerfectMoney, onSelectBitconin, onSelectMastercard }) => (
+const OutputMethods = ({ onSelectBitconin, onSelectMastercard }) => (
   <Row>
     <Layout basis='40px' />
     <Layout justify='center'>
@@ -24,18 +24,6 @@ const OutputMethods = ({ onSelectSepa, onSelectPerfectMoney, onSelectBitconin, o
       </Text>
     </Layout>
     <Layout basis='25px' />
-    <Layout justify='center'>
-      <OutputMethod onClick={onSelectSepa}>
-        SEPA Direct transfer
-      </OutputMethod>
-    </Layout>
-    <Layout basis='18px' />
-    <Layout justify='center'>
-      <OutputMethod onClick={onSelectPerfectMoney}>
-        Perfect Money
-      </OutputMethod>
-    </Layout>
-    <Layout basis='18px' />
     <Layout justify='center'>
       <OutputMethod onClick={onSelectBitconin}>
         Bitcoin

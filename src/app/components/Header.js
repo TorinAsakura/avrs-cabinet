@@ -33,7 +33,7 @@ const Header = ({ firstName, lastName, balance, isNew, onLogout }) => (
     </Condition>
     <Layout basis='30px' />
     <Layout>
-      <NavLink to='/service_plans'>
+      <NavLink to='/service-plans'>
         Тарифы
       </NavLink>
     </Layout>

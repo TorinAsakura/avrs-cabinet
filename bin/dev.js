@@ -18,7 +18,19 @@ app.use(hotMiddleware(compiler))
 
 app.use(serveStatic(path.resolve(__dirname, '../public')))
 
-app.get('*', (req, res) => res.end(middleware.fileSystem.readFileSync(`${config.output.path}index.html`)))
+app.get('*', (req, res, next) => {
+  if (!path.extname(req.originalUrl)) {
+    res.end(middleware.fileSystem.readFileSync(`${config.output.path}index.html`))
+  } else {
+    const parts = req.originalUrl.split('/')
+
+    if (parts.length > 2) {
+      res.redirect(`http://${req.header('host')}/${parts[parts.length - 1]}`)
+    } else {
+      next()
+    }
+  }
+})
 
 app.listen(3030, (error) => {
   if (error) {

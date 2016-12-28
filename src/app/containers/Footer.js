@@ -1,9 +1,8 @@
 import { connect } from 'react-redux'
-import Position from '../components/Position'
+import Footer from '../components/Footer'
 
 export default connect(
   state => ({
     landingUrl: state.config.landingUrl,
-    salesBalance: state.user.salesBalance,
   }),
-)(Position)
+)(Footer)

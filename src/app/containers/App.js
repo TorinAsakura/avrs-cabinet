@@ -2,8 +2,8 @@ import React from 'react'
 import { Row, Layout } from 'flex-layouts'
 import Workspace from '../components/Workspace'
 import Divider from '../components/Divider'
-import Footer from '../components/Footer'
 import Header from './Header'
+import Footer from './Footer'
 import Messages from './Messages'
 
 const App = ({ children, history }) => (

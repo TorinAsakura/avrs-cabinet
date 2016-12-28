@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+import { init } from '../../../actions/init'
 import { load as loadUser } from '../../../actions/user'
 import { send as sendMessage } from '../../../actions/messages'
 import { updateActivation } from '../../../constants/user'
@@ -59,10 +60,8 @@ export function buy() {
             time
             price
             period
-            profitability
             profitabilityPerDay
             profitabilityPerHour
-            profit
             amount
             memory
             cpu
@@ -164,7 +163,8 @@ export function applyLicense() {
     if (data.applyLicense.error) {
       dispatch(sendMessage({ message: data.applyLicense.error }))
     } else {
-      // update app
+      dispatch(init())
+      dispatch(changeLicense(''))
     }
   }
 }

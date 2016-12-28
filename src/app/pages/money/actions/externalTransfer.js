@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+import cardNumber from 'card-validator/src/card-number'
 import * as actions from '../constants/externalTransfer'
 import { load as loadHistory } from './history'
 
@@ -20,6 +21,42 @@ export function changeCard(field, value) {
 export function sentToCard() {
   return async (dispatch, getState, client) => {
     const { amount, number } = getState().money.transfer.external.card
+    const { balance } = getState().user
+
+    const value = parseFloat(amount)
+
+    if (isNaN(value) || value <= 0) {
+      dispatch({
+        type: actions.setLocalErrors,
+        errors: {
+          amount: 'Невалидное значение',
+        },
+      })
+
+      return null
+    }
+
+    if (balance < value) {
+      dispatch({
+        type: actions.setLocalErrors,
+        errors: {
+          amount: 'Превышает сумму на счете',
+        },
+      })
+
+      return null
+    }
+
+    if (!cardNumber(number).isValid) {
+      dispatch({
+        type: actions.setLocalErrors,
+        errors: {
+          number: 'Невалидный номер карты',
+        },
+      })
+
+      return null
+    }
 
     await client.mutate({
       mutation: gql`
@@ -40,6 +77,8 @@ export function sentToCard() {
     })
 
     dispatch(loadHistory(true))
+
+    return null
   }
 }
 

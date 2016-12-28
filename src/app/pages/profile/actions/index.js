@@ -32,7 +32,6 @@ export function saveGeneral() {
           $phone: String,
           $sex: String,
           $birthday: String,
-          $address: String,
           $country: String,
           $receiveEmails: Boolean!,
           $receiveAnnouncements: Boolean!
@@ -44,7 +43,6 @@ export function saveGeneral() {
             phone: $phone,
             sex: $sex,
             birthday: $birthday,
-            address: $address,
             country: $country,
             receiveEmails: $receiveEmails,
             receiveAnnouncements: $receiveAnnouncements
@@ -56,7 +54,6 @@ export function saveGeneral() {
               phone
               sex
               birthday
-              address
               country
             }
             errors {

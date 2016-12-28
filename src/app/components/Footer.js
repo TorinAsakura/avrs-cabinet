@@ -21,7 +21,7 @@ const Footer = ({ landingUrl }) => (
           </Layout>
           <Layout basis='15px' />
           <Layout>
-            <Link href={`${landingUrl}/`}>
+            <Link href={`${landingUrl}/?section=capabilities`}>
               <Text
                 color='gray250'
                 size='xsmall'
@@ -33,7 +33,7 @@ const Footer = ({ landingUrl }) => (
           </Layout>
           <Layout basis='15px' />
           <Layout>
-            <Link href={`${landingUrl}/`}>
+            <RouteLink to='/service-plans'>
               <Text
                 color='gray250'
                 size='xsmall'
@@ -41,7 +41,7 @@ const Footer = ({ landingUrl }) => (
               >
                 Тарифы
               </Text>
-            </Link>
+            </RouteLink>
           </Layout>
           <Layout basis='15px' />
           <Layout>
@@ -73,7 +73,7 @@ const Footer = ({ landingUrl }) => (
           </Layout>
           <Layout basis='15px' />
           <Layout>
-            <Link href={`${landingUrl}/`}>
+            <Link href={`${landingUrl}/about`}>
               <Text
                 color='gray250'
                 size='xsmall'

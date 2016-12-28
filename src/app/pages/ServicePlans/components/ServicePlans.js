@@ -3,7 +3,7 @@ import { Row, Layout } from 'flex-layouts'
 import ServicePlan from './ServicePlan'
 
 const ServicePlans = ({
-  active, basis, standard, premium, business,
+  active, basis, standart, premium, business,
   onMonth, onQuarter, onHalfYear, onYear, onOpenProduct,
 }) => (
   <Row>
@@ -23,15 +23,15 @@ const ServicePlans = ({
     <Layout basis='20px' />
     <Layout>
       <ServicePlan
-        {...standard}
+        {...standart}
         name='Стандарт'
         color='blue400'
         onOpenProduct={onOpenProduct}
-        onMonth={() => onMonth('standard')}
-        onQuarter={() => onQuarter('standard')}
-        onHalfYear={() => onHalfYear('standard')}
-        onYear={() => onYear('standard')}
-        active={active && active.type === 'standard' ? active : null}
+        onMonth={() => onMonth('standart')}
+        onQuarter={() => onQuarter('standart')}
+        onHalfYear={() => onHalfYear('standart')}
+        onYear={() => onYear('standart')}
+        active={active && active.type === 'standart' ? active : null}
       />
     </Layout>
     <Layout basis='20px' />

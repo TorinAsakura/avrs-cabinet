@@ -64,7 +64,7 @@ export const module = {
     },
     {
       test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-      loader: 'file-loader?/name=[name].[ext]',
+      loader: 'file-loader?name=/[name].[ext]',
     },
     {
       test: /\.po$/,
@@ -78,6 +78,14 @@ export const resolve = {
     new CssResolvePlugin(),
   ],
 }
+
+export const node = {
+  fs: 'empty',
+}
+
+export const externals = [{
+  './cptable': 'var cptable',
+}]
 
 export const plugins = [
   new HtmlWebpackPlugin({

@@ -2,7 +2,7 @@ import { createReducer } from '../../../../utils'
 import * as actions from '../constants'
 
 const initialState = {
-  type: 'standard',
+  type: 'standart',
   period: 90,
   active: null,
   items: [],

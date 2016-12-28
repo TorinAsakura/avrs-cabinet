@@ -9,8 +9,10 @@ export function load() {
           networkDirectReferals {
             id
             email
+            status
             firstName
             lastName
+            country
             createdAt
           }
         }

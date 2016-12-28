@@ -20,9 +20,6 @@ const Direct = ({ users = [] }) => (
               Страна
             </Cell>
             <Cell>
-              Город
-            </Cell>
-            <Cell>
               Позиция
             </Cell>
             <Cell>
@@ -40,16 +37,21 @@ const Direct = ({ users = [] }) => (
               <Cell weight='medium'>
                 {user.createdAt}
               </Cell>
-              <Cell />
-              <Cell />
-              <Cell />
+              <Cell>
+                {user.country}
+              </Cell>
+              <Cell>
+                {user.position}
+              </Cell>
               <Cell>
                 {user.firstName} {user.lastName}
               </Cell>
               <Cell>
                 {user.id}
               </Cell>
-              <Cell />
+              <Cell>
+                {user.status}
+              </Cell>
             </TableRow>
           ))}
         </Table>

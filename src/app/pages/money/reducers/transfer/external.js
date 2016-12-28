@@ -8,6 +8,7 @@ const initialState = {
     number: '',
     amount: '0.00',
   },
+  errors: {},
 }
 
 export default createReducer(initialState, {
@@ -23,6 +24,7 @@ export default createReducer(initialState, {
       [field]: value,
     },
   }),
+  [actions.setLocalErrors]: (state, { errors }) => ({ ...state, errors }),
   [actions.paymentSuccess]: state => ({ ...state, step: 2 }),
   [actions.clear]: () => initialState,
 })

@@ -2,6 +2,7 @@ import React from 'react'
 import { Column, Row, Layout } from 'flex-layouts'
 import { Block } from 'avrs-ui/src/content'
 import { Text, Space } from 'avrs-ui/src/text'
+import { Link } from 'avrs-ui/src/link'
 
 const getPosition = (salesBalance) => {
   if (salesBalance < 5000) {
@@ -19,7 +20,7 @@ const getPosition = (salesBalance) => {
   return 'Platinum'
 }
 
-const Position = ({ salesBalance }) => (
+const Position = ({ salesBalance, landingUrl }) => (
   <Block
     shadow
     offset
@@ -40,12 +41,17 @@ const Position = ({ salesBalance }) => (
       <Layout>
         <Column>
           <Layout>
-            <Text
-              color='blue400'
-              size='xsmall'
+            <Link
+              target='_blank'
+              href={`${landingUrl}/about/carrier`}
             >
-              Позиции
-            </Text>
+              <Text
+                color='blue400'
+                size='xsmall'
+              >
+                Позиции
+              </Text>
+            </Link>
             <Space />
             <Text
               color='blue400'

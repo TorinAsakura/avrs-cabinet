@@ -4,7 +4,7 @@ import { Block } from 'avrs-ui/src/content'
 import { Button } from 'avrs-ui/src/button'
 import { Table, Row as TableRow, Cell } from 'avrs-ui/src/table'
 
-const Referal = ({ operations = [] }) => (
+const Referal = ({ operations = [], onExportXls }) => (
   <Block
     shadow
     offset
@@ -21,9 +21,6 @@ const Referal = ({ operations = [] }) => (
               Сумма
             </Cell>
             <Cell>
-              Тип
-            </Cell>
-            <Cell>
               Процент
             </Cell>
             <Cell>
@@ -31,12 +28,6 @@ const Referal = ({ operations = [] }) => (
             </Cell>
             <Cell>
               Пакет
-            </Cell>
-            <Cell>
-              Статус
-            </Cell>
-            <Cell>
-              Период
             </Cell>
           </TableRow>
           {operations.map((operation, index) => (
@@ -47,14 +38,15 @@ const Referal = ({ operations = [] }) => (
               <Cell>
                 {operation.amount}
               </Cell>
-              <Cell />
-              <Cell />
-              <Cell />
+              <Cell>
+                {operation.percent}%
+              </Cell>
+              <Cell>
+                {operation.participant}
+              </Cell>
               <Cell>
                 {operation.package}
               </Cell>
-              <Cell />
-              <Cell />
             </TableRow>
           ))}
         </Table>
@@ -67,6 +59,7 @@ const Referal = ({ operations = [] }) => (
               shadow
               rounded
               color='green'
+              onClick={onExportXls}
             >
               Экспорт в XLS
             </Button>

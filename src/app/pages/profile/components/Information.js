@@ -25,7 +25,7 @@ const statuses = {
   INACTIVE: 'Неактивный',
 }
 
-const Information = ({ firstName, lastName, inviteCode, salesBalance, registeredAt, status, sponsor }) => (
+const Information = ({ firstName, lastName, refLink, salesBalance, registeredAt, status, sponsor }) => (
   <Row>
     <Layout>
       <Block
@@ -50,12 +50,12 @@ const Information = ({ firstName, lastName, inviteCode, salesBalance, registered
                 </Text>
               </Layout>
               <Layout basis='60px' />
-              <Layout basis='30%'>
+              <Layout basis='40%'>
                 <Text size='small' color='black400'>
-                  {inviteCode}
+                  {refLink}
                 </Text>
               </Layout>
-              <Layout basis='110px' />
+              <Layout basis='60px' />
               <Layout basis='120px'>
                 <Text size='small' weight='medium' color='black400'>
                   Статус:

@@ -1,11 +1,11 @@
-import { loadLocation } from '../actions/registration'
+import { loadLocation, setInviteCode } from '../actions/registration'
 import Auth from '../containers/Auth'
 import Login from '../containers/Login'
 import Registration from '../containers/Registration'
 import ResetPassword from '../containers/ResetPassword'
 import UpdatePassword from '../containers/UpdatePassword'
 
-export default function getRoutes({ dispatch, getState }) {
+export default function getRoutes({ dispatch }) {
   return {
     component: Auth,
     path: 'auth',
@@ -17,18 +17,9 @@ export default function getRoutes({ dispatch, getState }) {
       {
         path: 'registration',
         component: Registration,
-        onEnter() {
+        onEnter({ location }) {
           dispatch(loadLocation())
-        },
-      },
-      {
-        path: 'activate/:token',
-        onEnter({ params = {} }, replace) {
-          if (getState().security.token) {
-            replace({ pathname: '/' })
-          } else {
-            replace({ pathname: '/auth/login' })
-          }
+          dispatch(setInviteCode(location))
         },
       },
       {

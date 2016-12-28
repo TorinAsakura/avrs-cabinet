@@ -8,6 +8,7 @@ export default connect(
     referalBalance: state.user.referalBalance,
     amount: state.money.transfer.internal.amount,
     success: state.money.transfer.internal.success,
+    errors: state.money.transfer.internal.errors,
   }),
   dispatch => ({
     onChange: amount => dispatch(change(amount)),

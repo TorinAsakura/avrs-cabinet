@@ -6,8 +6,8 @@ import { Button, GhostButton } from 'avrs-ui/src/button'
 import { Text } from 'avrs-ui/src/text'
 import { Divider } from 'avrs-ui/src/divider'
 import { Link, RouteLink } from 'avrs-ui/src/link'
+import Footer from '../../../containers/Footer'
 import Container from './Container'
-import Links from './Links'
 
 const Auth = ({ children, landingUrl, pathname }) => (
   <Row fill>
@@ -16,9 +16,9 @@ const Auth = ({ children, landingUrl, pathname }) => (
       <Column align='center'>
         <Layout basis='35px' />
         <Layout>
-          <RouteLink to='/'>
+          <Link href={`${landingUrl}/`}>
             <Logo height={25} />
-          </RouteLink>
+          </Link>
         </Layout>
         <Layout basis='30px' />
         <Layout>
@@ -32,7 +32,7 @@ const Auth = ({ children, landingUrl, pathname }) => (
         </Layout>
         <Layout basis='30px' />
         <Layout>
-          <Link href={`${landingUrl}/`}>
+          <Link href={`${landingUrl}/?section=capabilities`}>
             <Text size='small'>
               Возможности
             </Text>
@@ -40,7 +40,7 @@ const Auth = ({ children, landingUrl, pathname }) => (
         </Layout>
         <Layout basis='30px' />
         <Layout>
-          <Link href={`${landingUrl}/`}>
+          <Link href={`${landingUrl}/service-plans`}>
             <Text size='small'>
               Тарифы
             </Text>
@@ -48,9 +48,9 @@ const Auth = ({ children, landingUrl, pathname }) => (
         </Layout>
         <Layout basis='30px' />
         <Layout>
-          <Link href={`${landingUrl}/`}>
+          <Link href={`${landingUrl}/news`}>
             <Text size='small'>
-              Продукты
+              Новости
             </Text>
           </Link>
         </Layout>
@@ -92,7 +92,7 @@ const Auth = ({ children, landingUrl, pathname }) => (
             </Layout>
             <Layout basis='40px' />
             <Layout>
-              <Links landingUrl={landingUrl} />
+              <Footer />
             </Layout>
           </Row>
         </Container>
