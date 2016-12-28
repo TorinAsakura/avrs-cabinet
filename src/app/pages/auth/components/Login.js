@@ -37,6 +37,7 @@ const Login = ({ email, password, errors, onChangeEmail, onChangePassword, onLog
               <Layout basis='5px' />
               <Layout>
                 <Input
+                  tabIndex={1}
                   value={email}
                   invalid={errors.email}
                   onChange={onChangeEmail}
@@ -72,6 +73,7 @@ const Login = ({ email, password, errors, onChangeEmail, onChangePassword, onLog
               <Layout basis='5px' />
               <Layout>
                 <Input
+                  tabIndex={2}
                   type='password'
                   value={password}
                   onChange={onChangePassword}

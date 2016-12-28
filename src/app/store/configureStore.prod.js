@@ -16,13 +16,5 @@ const enhancer = compose(
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, enhancer)
 
-  store.history.listenBefore((location) => {
-    if (!/^\/auth/.test(location.pathname)) {
-      if (!store.getState().security.token) {
-        store.history.push('/auth/login')
-      }
-    }
-  })
-
   return store
 }

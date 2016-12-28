@@ -6,6 +6,7 @@ export default connect(
   state => ({
     amount: state.money.transfer.external.card.amount,
     number: state.money.transfer.external.card.number,
+    errors: state.money.transfer.external.errors,
   }),
   dispatch => ({
     onChangeNumber: value => dispatch(changeCard('number', value)),

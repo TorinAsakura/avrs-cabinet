@@ -12,7 +12,7 @@ export function change(field, value) {
 export function reset() {
   return async (dispatch, getState, client) => {
     const { email } = getState().auth.resetPassword
-    const resetUrl = `${window.location.origin}/#/auth/update_password/`
+    const resetUrl = `${window.location.origin}/auth/update_password/`
 
     const { data } = await client.mutate({
       mutation: gql`

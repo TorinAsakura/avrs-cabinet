@@ -17,7 +17,6 @@ export function init() {
             phone
             sex
             birthday
-            address
             country
             balance
             salesBalance
@@ -47,10 +46,8 @@ export function init() {
             period
             time
             price
-            profitability
             profitabilityPerDay
             profitabilityPerHour
-            profit
             amount
             memory
             cpu

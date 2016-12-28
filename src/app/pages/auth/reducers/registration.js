@@ -24,5 +24,6 @@ export default createReducer(initialState, {
   [actions.setLocation]: (state, { country }) => ({ ...state, country }),
   [actions.goToCommon]: state => ({ ...state, step: 0 }),
   [actions.goToPersonal]: state => ({ ...state, step: 1 }),
+  [actions.goToSuccess]: state => ({ ...state, step: 2 }),
   [actions.clear]: () => initialState,
 })

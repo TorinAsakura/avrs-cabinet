@@ -9,7 +9,7 @@ import ActivationAction from './ActivationAction'
 
 const names = {
   basis: 'Базис',
-  standard: 'Стандарт',
+  standart: 'Стандарт',
   premium: 'Премиум',
   business: 'Бизнес',
 }

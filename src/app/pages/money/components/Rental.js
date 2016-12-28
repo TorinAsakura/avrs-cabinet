@@ -4,7 +4,7 @@ import { Block } from 'avrs-ui/src/content'
 import { Button } from 'avrs-ui/src/button'
 import { Table, Row as TableRow, Cell } from 'avrs-ui/src/table'
 
-const Rent = ({ operations = [] }) => (
+const Rent = ({ operations = [], onExportXls }) => (
   <Block
     shadow
     offset
@@ -27,19 +27,7 @@ const Rent = ({ operations = [] }) => (
               Тип
             </Cell>
             <Cell>
-              Процент
-            </Cell>
-            <Cell>
-              Участник
-            </Cell>
-            <Cell>
               Пакет
-            </Cell>
-            <Cell>
-              Статус
-            </Cell>
-            <Cell>
-              Период
             </Cell>
           </TableRow>
           {operations.map((operation, index) => (
@@ -53,13 +41,12 @@ const Rent = ({ operations = [] }) => (
               <Cell>
                 {operation.time}
               </Cell>
-              <Cell />
-              <Cell />
+              <Cell>
+                Бонус
+              </Cell>
               <Cell>
                 {operation.package}
               </Cell>
-              <Cell />
-              <Cell />
             </TableRow>
           ))}
         </Table>
@@ -72,6 +59,7 @@ const Rent = ({ operations = [] }) => (
               shadow
               rounded
               color='green'
+              onClick={onExportXls}
             >
               Экспорт в XLS
             </Button>

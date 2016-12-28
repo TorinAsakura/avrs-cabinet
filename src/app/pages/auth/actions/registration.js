@@ -4,7 +4,7 @@ import * as actions from '../constants/registration'
 
 const send = async (client, variables) => {
   const { inviteCode } = variables
-  const activateUrl = `${window.location.origin}/#/auth/activate/`
+  const activateUrl = `${window.location.origin}/auth/activate/`
 
   const { data } = await client.mutate({
     mutation: gql`
@@ -82,6 +82,19 @@ export function loadLocation() {
   }
 }
 
+export function setInviteCode(location) {
+  return async (dispatch, getState) => {
+    if (location.query.rf) {
+      const { inviteCode } = getState().auth.registration
+
+      if (!(inviteCode && inviteCode.length > 0)) {
+        dispatch(change('inviteCode', location.query.rf))
+      }
+    }
+  }
+}
+
+
 export function nextStep() {
   return async (dispatch, getState, client) => {
     const variables = getState().auth.registration
@@ -133,7 +146,9 @@ export function register() {
     } else {
       dispatch(auth(token))
 
-      window.location.href = '/'
+      dispatch({
+        type: actions.goToSuccess,
+      })
     }
   }
 }

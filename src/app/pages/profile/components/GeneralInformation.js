@@ -1,12 +1,12 @@
 import React from 'react'
 import { Column, Row, Layout } from 'flex-layouts'
+import { Condition } from 'avrs-ui/src/condition'
 import { Button, GhostButton } from 'avrs-ui/src/button'
 import { Block } from 'avrs-ui/src/content'
 import { Label } from 'avrs-ui/src/label'
 import { DatePicker } from 'avrs-ui/src/datepicker'
 import { Select } from 'avrs-ui/src/select'
 import { Input, PhoneInput } from 'avrs-ui/src/input'
-import { Textarea } from 'avrs-ui/src/textarea'
 import { Checkbox } from 'avrs-ui/src/checkbox'
 import { Text } from 'avrs-ui/src/text'
 import countriesData from 'i18n-iso-countries/langs/ru.json'
@@ -17,9 +17,9 @@ const countries =
   , [])
 
 const GeneralInformation = ({
-  firstName, lastName, email, phone, sex, birthday, address, country, receiveEmails, receiveAnnouncements,
+  firstName, lastName, email, phone, sex, birthday, country, receiveEmails, receiveAnnouncements, errors,
   onChangeFirstName, onChangeLastName, onChangeEmail, onChangePhone, onChangeSex,
-  onChangeBirthday, onChangeAddress, onChangeCountry, onChangeReceiveEmails,
+  onChangeBirthday, onChangeCountry, onChangeReceiveEmails,
   onChangeReceiveAnnouncements, onSave, onReset,
 }) => (
   <Block
@@ -38,9 +38,20 @@ const GeneralInformation = ({
           <Layout>
             <Input
               value={firstName}
+              invalid={errors.firstName}
               onChange={onChangeFirstName}
             />
           </Layout>
+          <Condition match={errors.firstName}>
+            <Row>
+              <Layout basis='5px' />
+              <Layout>
+                <Text color='red400' size='xsmall'>
+                  {errors.firstName}
+                </Text>
+              </Layout>
+            </Row>
+          </Condition>
           <Layout basis='20px' />
           <Layout>
             <Label>
@@ -51,9 +62,20 @@ const GeneralInformation = ({
           <Layout>
             <Input
               value={lastName}
+              invalid={errors.lastName}
               onChange={onChangeLastName}
             />
           </Layout>
+          <Condition match={errors.lastName}>
+            <Row>
+              <Layout basis='5px' />
+              <Layout>
+                <Text color='red400' size='xsmall'>
+                  {errors.lastName}
+                </Text>
+              </Layout>
+            </Row>
+          </Condition>
           <Layout basis='20px' />
           <Layout>
             <Label>
@@ -64,9 +86,20 @@ const GeneralInformation = ({
           <Layout>
             <Input
               value={email}
+              invalid={errors.email}
               onChange={onChangeEmail}
             />
           </Layout>
+          <Condition match={errors.email}>
+            <Row>
+              <Layout basis='5px' />
+              <Layout>
+                <Text color='red400' size='xsmall'>
+                  {errors.email}
+                </Text>
+              </Layout>
+            </Row>
+          </Condition>
           <Layout basis='20px' />
           <Layout>
             <Label>
@@ -77,9 +110,20 @@ const GeneralInformation = ({
           <div style={{ position: 'relative', overflow: 'visible' }}>
             <PhoneInput
               value={phone}
+              invalid={errors.phone}
               onChange={onChangePhone}
             />
           </div>
+          <Condition match={errors.phone}>
+            <Row>
+              <Layout basis='5px' />
+              <Layout>
+                <Text color='red400' size='xsmall'>
+                  {errors.phone}
+                </Text>
+              </Layout>
+            </Row>
+          </Condition>
           <Layout basis='20px' />
           <Layout>
             <Label>
@@ -90,6 +134,7 @@ const GeneralInformation = ({
           <Layout>
             <Select
               value={sex}
+              invalid={errors.sex}
               options={[{
                 label: 'Муж.',
                 value: 'male',
@@ -100,6 +145,16 @@ const GeneralInformation = ({
               onChange={onChangeSex}
             />
           </Layout>
+          <Condition match={errors.sex}>
+            <Row>
+              <Layout basis='5px' />
+              <Layout>
+                <Text color='red400' size='xsmall'>
+                  {errors.sex}
+                </Text>
+              </Layout>
+            </Row>
+          </Condition>
           <Layout basis='20px' />
           <Layout>
             <Label>
@@ -110,23 +165,20 @@ const GeneralInformation = ({
           <Layout>
             <DatePicker
               value={birthday}
+              invalid={errors.birthday}
               onChange={onChangeBirthday}
             />
           </Layout>
-          <Layout basis='20px' />
-          <Layout>
-            <Label>
-              Почтовый адрес (на Английском языке):
-            </Label>
-          </Layout>
-          <Layout basis='5px' />
-          <Layout>
-            <Textarea
-              rows={4}
-              value={address}
-              onChange={onChangeAddress}
-            />
-          </Layout>
+          <Condition match={errors.birthday}>
+            <Row>
+              <Layout basis='5px' />
+              <Layout>
+                <Text color='red400' size='xsmall'>
+                  {errors.birthday}
+                </Text>
+              </Layout>
+            </Row>
+          </Condition>
           <Layout basis='20px' />
           <Layout>
             <Label>
@@ -138,9 +190,20 @@ const GeneralInformation = ({
             <Select
               options={countries}
               value={country}
+              invalid={errors.country}
               onChange={onChangeCountry}
             />
           </Layout>
+          <Condition match={errors.country}>
+            <Row>
+              <Layout basis='5px' />
+              <Layout>
+                <Text color='red400' size='xsmall'>
+                  {errors.country}
+                </Text>
+              </Layout>
+            </Row>
+          </Condition>
           <Layout basis='25px' />
           <Layout>
             <Column align='center'>

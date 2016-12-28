@@ -8,7 +8,7 @@ import getRoutes from '../routes'
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <Preload>
+    <Preload store={store}>
       <IntlProvider>
         <ReduxRouter routes={getRoutes(store)} />
       </IntlProvider>

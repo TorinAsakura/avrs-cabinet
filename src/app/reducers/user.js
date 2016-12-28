@@ -43,6 +43,8 @@ export default createReducer(initialState, {
     ...state,
     ...user,
     isNew: user.status === 'NEW',
+    notActivated: user.status === 'NOT_ACTIVATED',
+    refLink: `${window.location.host}/auth/registration?rf=${user.inviteCode}`,
     registeredAt: moment(new Date(user.createdAt)).format('YYYY/MM/DD'),
     activations: user.activations.sort(sortActivations).map(formatActivation),
   }),
@@ -60,4 +62,6 @@ export default createReducer(initialState, {
     ...state,
     ...fields,
   }),
+  [actions.activationSent]: state => ({ ...state, activationSent: true }),
+  [actions.activationError]: state => ({ ...state, activationError: true }),
 })

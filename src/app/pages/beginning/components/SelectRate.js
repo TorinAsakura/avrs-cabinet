@@ -4,11 +4,11 @@ import { Block } from 'avrs-ui/src/content'
 import { Text, Space } from 'avrs-ui/src/text'
 import { Divider } from 'avrs-ui/src/divider'
 import { Slider } from 'avrs-ui/src/slider'
-import { Link } from 'avrs-ui/src/link'
+import { Link, RouteLink } from 'avrs-ui/src/link'
 
 const names = {
   basis: 'Базис',
-  standard: 'Стандарт',
+  standart: 'Стандарт',
   premium: 'Премиум',
   business: 'Бизнес',
 }
@@ -187,12 +187,14 @@ const SelectRate = ({ plan, onChangePeriod, onChangeTime, onChangeCPU, onChangeM
         <Column>
           <Layout basis='25px' />
           <Layout>
-            <Text
-              color='blue400'
-              size='small'
-            >
-              Подробнее о тарифах
-            </Text>
+            <RouteLink to='/service-plans'>
+              <Text
+                color='blue400'
+                size='small'
+              >
+                Подробнее о тарифах
+              </Text>
+            </RouteLink>
           </Layout>
           <Layout grow={1} />
           <Layout>
@@ -201,7 +203,7 @@ const SelectRate = ({ plan, onChangePeriod, onChangeTime, onChangeCPU, onChangeM
                 color='gray250'
                 size='small'
               >
-                Продолжить
+                Купить
               </Text>
             </Link>
             <Space />

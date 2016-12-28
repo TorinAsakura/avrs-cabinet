@@ -3,7 +3,6 @@ import { Column, Row, Layout } from 'flex-layouts'
 import Tabs from '../components/Tabs'
 import Activation from './Activation'
 import Position from './Position'
-import Referals from './Referals'
 import Sales from './Sales'
 
 const Network = ({ children }) => (
@@ -13,19 +12,15 @@ const Network = ({ children }) => (
       <Row>
         <Layout>
           <Column>
-            <Layout shrink={1} basis='25%'>
+            <Layout shrink={1} basis='33%'>
               <Activation />
             </Layout>
             <Layout basis='25px' />
-            <Layout shrink={1} basis='25%'>
+            <Layout shrink={1} basis='33%'>
               <Position />
             </Layout>
             <Layout basis='25px' />
-            <Layout shrink={1} basis='25%'>
-              <Referals />
-            </Layout>
-            <Layout basis='25px' />
-            <Layout shrink={1} basis='25%'>
+            <Layout shrink={1} basis='33%'>
               <Sales />
             </Layout>
           </Column>

@@ -42,6 +42,8 @@ export function update() {
       })
     } else {
       dispatch(auth(data.updateUserPassword.token))
+
+      window.location.href = '/'
     }
   }
 }
