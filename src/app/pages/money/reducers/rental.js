@@ -12,7 +12,7 @@ export default createReducer(initialState, {
     ...state,
     operations: operations.map(operation => ({
       ...operation,
-      date: moment(new Date(operation.date)).format('YYYY-MM-DD'),
+      date: moment(new Date(operation.date)).format('YYYY-MM-DD, HH:mm'),
       time: moment().startOf('day').seconds(operation.time).format('H:mm:ss'),
       package: getPackage(operation.package),
     })),

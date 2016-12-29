@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Column, Row, Layout } from 'flex-layouts'
 import { Condition } from 'avrs-ui/src/condition'
 import Balance from '../../money/containers/Balance'
+import Download from '../components/Download'
 import Activation from './Activation'
 import Payments from './Payments'
 import Network from './Network'
@@ -31,6 +32,10 @@ const Home = ({ isNew = true }) => (
           <Layout basis='20px' />
           <Layout>
             <Network />
+          </Layout>
+          <Layout basis='20px' />
+          <Layout>
+            <Download />
           </Layout>
         </Row>
       </Layout>
