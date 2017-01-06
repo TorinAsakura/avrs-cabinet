@@ -4,7 +4,7 @@ import { Column, Row, Layout } from 'flex-layouts'
 import { Block } from 'avrs-ui/src/content'
 import { Text, Space } from 'avrs-ui/src/text'
 import { Condition } from 'avrs-ui/src/condition'
-import { PlayIcon, StopIcon, LockIcon } from 'avrs-ui/src/icons'
+import { LockIcon } from 'avrs-ui/src/icons'
 import ActivationAction from './ActivationAction'
 
 const names = {
@@ -20,7 +20,7 @@ const statuses = {
   STOPPED: 'Приостановленный пакет',
 }
 
-const Activation = ({ servicePlan = {}, id, status, isInactive, isActive, isStopped, leftTime, onStart, onStop }) => (
+const Activation = ({ servicePlan = {}, id, status, isInactive, isActive, leftTime, onStart }) => (
   <Condition match={servicePlan}>
     <Block
       offset
@@ -41,7 +41,9 @@ const Activation = ({ servicePlan = {}, id, status, isInactive, isActive, isStop
                 {statuses[status]}
               </Text>
             </Layout>
-            <Layout basis='25px' />
+            <Condition match={isInactive}>
+              <Layout basis='25px' />
+            </Condition>
             <Layout>
               <Column>
                 <Condition match={isInactive}>
@@ -67,40 +69,6 @@ const Activation = ({ servicePlan = {}, id, status, isInactive, isActive, isStop
                   <Layout basis='25px' />
                 </Condition>
                 <Layout>
-                  <Condition match={isStopped}>
-                    <Link onClick={() => onStart(id)}>
-                      <Text
-                        color='blue400'
-                        size='xsmall'
-                      >
-                        Возобновить
-                      </Text>
-                      <Space />
-                      <Text
-                        color='blue400'
-                        size='xsmall'
-                      >
-                        &#10095;
-                      </Text>
-                    </Link>
-                  </Condition>
-                  <Condition match={isActive}>
-                    <Link onClick={() => onStop(id)}>
-                      <Text
-                        color='blue400'
-                        size='xsmall'
-                      >
-                        Остановить
-                      </Text>
-                      <Space />
-                      <Text
-                        color='blue400'
-                        size='xsmall'
-                      >
-                        &#10095;
-                      </Text>
-                    </Link>
-                  </Condition>
                   <Condition match={isInactive}>
                     <Link>
                       <Text
@@ -124,16 +92,6 @@ const Activation = ({ servicePlan = {}, id, status, isInactive, isActive, isStop
           </Row>
         </Layout>
         <Layout basis='10%' align='center' justify='center'>
-          <Condition match={isActive}>
-            <ActivationAction onClick={() => onStop(id)}>
-              <StopIcon height={30} fill='#E1E4E6' />
-            </ActivationAction>
-          </Condition>
-          <Condition match={isStopped}>
-            <ActivationAction onClick={() => onStart(id)}>
-              <PlayIcon height={30} fill='#E1E4E6' />
-            </ActivationAction>
-          </Condition>
           <Condition match={isInactive}>
             <ActivationAction onClick={() => onStart(id)}>
               <LockIcon height={30} fill='#E1E4E6' />

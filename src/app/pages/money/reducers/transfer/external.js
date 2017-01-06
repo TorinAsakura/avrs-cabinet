@@ -8,6 +8,10 @@ const initialState = {
     number: '',
     amount: '0.00',
   },
+  bitcoin: {
+    number: '',
+    amount: '0.00',
+  },
   errors: {},
 }
 
@@ -21,6 +25,13 @@ export default createReducer(initialState, {
     ...state,
     card: {
       ...state.card,
+      [field]: value,
+    },
+  }),
+  [actions.changeBitcoin]: (state, { field, value }) => ({
+    ...state,
+    bitcoin: {
+      ...state.bitcoin,
       [field]: value,
     },
   }),
