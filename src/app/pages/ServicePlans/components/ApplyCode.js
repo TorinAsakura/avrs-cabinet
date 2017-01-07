@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden',
     width: '100%',
+    '& input': {
+      paddingRight: '36px',
+    },
     '& a': {
       position: 'absolute',
       right: 0,

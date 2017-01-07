@@ -42,7 +42,7 @@ const Rent = ({ operations = [], onExportXls }) => (
                 {operation.time}
               </Cell>
               <Cell>
-                Бонус
+                Заработок
               </Cell>
               <Cell>
                 {operation.package}

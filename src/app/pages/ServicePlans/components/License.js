@@ -40,7 +40,7 @@ const License = ({ license, onChange, onApply }) => (
         </Row>
       </Layout>
       <Layout grow={1} />
-      <Layout basis='250px'>
+      <Layout basis='260px'>
         <ApplyCode
           value={license}
           placeholder='Код лицензии'

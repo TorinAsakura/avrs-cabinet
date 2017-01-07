@@ -92,7 +92,7 @@ const Auth = ({ children, landingUrl, pathname }) => (
             </Layout>
             <Layout basis='40px' />
             <Layout>
-              <Footer />
+              <Footer external />
             </Layout>
           </Row>
         </Container>

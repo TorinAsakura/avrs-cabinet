@@ -2,4 +2,5 @@ export const changeMethod = '@@avrs-cabinet/money/transfer/external/CHANGE_METHO
 export const paymentSuccess = '@@avrs-cabinet/money/transfer/external/PAYMENT_SUCCESS'
 export const clear = '@@avrs-cabinet/money/transfer/external/CLEAR'
 export const changeCard = '@@avrs-cabinet/money/transfer/external/card/CHANGE'
+export const changeBitcoin = '@@avrs-cabinet/money/transfer/external/bitcoin/CHANGE'
 export const setLocalErrors = '@@avrs-cabinet/money/transfer/external/SET_LOCAL_ERRORS'
