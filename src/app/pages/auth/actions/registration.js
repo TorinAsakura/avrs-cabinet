@@ -137,21 +137,37 @@ export function nextStep() {
 
 export function register() {
   return async (dispatch, getState, client) => {
-    const variables = getState().auth.registration
+    const { captcha, ...variables } = getState().auth.registration
 
-    const { errors, token } = await send(client, variables, true)
+    const response = await send(client, { captcha: '', ...variables })
 
-    if (errors.length > 0) {
-      dispatch({
-        type: actions.setErrors,
-        errors,
-      })
+    if (response.errors.length > 1) {
+      if (!captcha) {
+        dispatch({
+          type: actions.setErrors,
+          errors: response.errors,
+        })
+      } else {
+        dispatch({
+          type: actions.setErrors,
+          errors: response.errors.filter(({ key }) => !key.includes('captcha')),
+        })
+      }
     } else {
-      dispatch(auth(token))
+      const { errors, token } = await send(client, { captcha, ...variables })
 
-      dispatch({
-        type: actions.goToSuccess,
-      })
+      if (errors.length > 0) {
+        dispatch({
+          type: actions.setErrors,
+          errors,
+        })
+      } else {
+        dispatch(auth(token))
+
+        dispatch({
+          type: actions.goToSuccess,
+        })
+      }
     }
   }
 }
