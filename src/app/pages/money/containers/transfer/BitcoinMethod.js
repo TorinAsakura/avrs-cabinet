@@ -5,7 +5,7 @@ import BitcoinMethod from '../../components/transfer/BitcoinMethod'
 export default connect(
   state => ({
     amount: state.money.transfer.external.bitcoin.amount,
-    number: state.money.transfer.external.bitcoin.number,
+    address: state.money.transfer.external.bitcoin.address,
     errors: state.money.transfer.external.errors,
   }),
   dispatch => ({

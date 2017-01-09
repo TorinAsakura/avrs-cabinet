@@ -2,7 +2,7 @@ import { load as loadRental } from '../actions/rental'
 import { load as loadReferal } from '../actions/referal'
 import { load as loadHistory } from '../actions/history'
 import { clear as clearInternal } from '../actions/internalTransfer'
-import { clear as clearExternal } from '../actions/externalTransfer'
+import { clear as clearExternal, sync as syncExternal } from '../actions/externalTransfer'
 import Money from '../containers/Money'
 import Rental from '../containers/Rental'
 import Referal from '../containers/Referal'
@@ -50,6 +50,9 @@ export default function getRoutes({ dispatch }) {
   }, {
     path: 'transfer/external',
     component: ExternalTransfer,
+    onEnter() {
+      dispatch(syncExternal())
+    },
     onLeave() {
       dispatch(clearExternal())
     },

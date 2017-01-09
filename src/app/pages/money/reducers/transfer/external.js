@@ -9,13 +9,24 @@ const initialState = {
     amount: '0.00',
   },
   bitcoin: {
-    number: '',
+    address: '',
     amount: '0.00',
   },
   errors: {},
 }
 
 export default createReducer(initialState, {
+  [actions.sync]: (state, { cardNumber, btcAddress }) => ({
+    ...state,
+    card: {
+      ...state.card,
+      number: cardNumber,
+    },
+    bitcoin: {
+      ...state.bitcoin,
+      address: btcAddress,
+    },
+  }),
   [actions.changeMethod]: (state, { method }) => ({
     ...state,
     step: 1,
