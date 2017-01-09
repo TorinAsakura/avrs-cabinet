@@ -12,6 +12,11 @@ const Tabs = () => (
           Основная информация
         </TabRouteLink>
       </Layout>
+      <Layout>
+        <TabRouteLink to='/profile/withdraw'>
+          Вывод средств
+        </TabRouteLink>
+      </Layout>
     </Column>
   </Block>
 )

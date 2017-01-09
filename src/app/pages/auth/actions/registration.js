@@ -1,3 +1,4 @@
+import moment from 'moment'
 import gql from 'graphql-tag'
 import { auth } from '../../../actions/user'
 import * as actions from '../constants/registration'
@@ -5,6 +6,7 @@ import * as actions from '../constants/registration'
 const send = async (client, variables) => {
   const { inviteCode } = variables
   const activateUrl = `${window.location.origin}/auth/activate/`
+  const birthday = moment(variables.birthday, 'DD.MM.YYYY', true)
 
   const { data } = await client.mutate({
     mutation: gql`
@@ -51,6 +53,7 @@ const send = async (client, variables) => {
     variables: {
       ...variables,
       activateUrl,
+      birthday: birthday.isValid() ? birthday.toDate() : '',
       inviteCode: (inviteCode && inviteCode.length > 0) ? inviteCode : '',
     },
   })

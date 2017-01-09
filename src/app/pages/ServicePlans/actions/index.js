@@ -103,6 +103,10 @@ export function startActivation(id) {
         activation: data.startActivation,
       })
     }
+
+    if (getState().user.notActivated) {
+      dispatch(init())
+    }
   }
 }
 

@@ -1,8 +1,19 @@
 import gql from 'graphql-tag'
-import cardNumber from 'card-validator/src/card-number'
-import WAValidator from 'wallet-address-validator'
 import * as actions from '../constants/externalTransfer'
+import { update as updateUser } from '../../../actions/user'
 import { load as loadHistory } from './history'
+
+export function sync() {
+  return async (dispatch, getState) => {
+    const { cardNumber, btcAddress } = getState().user
+
+    dispatch({
+      type: actions.sync,
+      cardNumber,
+      btcAddress,
+    })
+  }
+}
 
 export function selectMethod(method) {
   return {
@@ -21,7 +32,7 @@ export function changeCard(field, value) {
 
 export function sentToCard() {
   return async (dispatch, getState, client) => {
-    const { amount, number } = getState().money.transfer.external.card
+    const { amount } = getState().money.transfer.external.card
     const { balance } = getState().user
 
     const value = parseFloat(amount)
@@ -48,28 +59,16 @@ export function sentToCard() {
       return null
     }
 
-    if (!cardNumber(number).isValid) {
-      dispatch({
-        type: actions.setLocalErrors,
-        errors: {
-          number: 'Невалидный номер карты',
-        },
-      })
-
-      return null
-    }
-
     await client.mutate({
       mutation: gql`
-        mutation withdrawToCard($amount: Float!, $number: String!) {
-          withdrawToCard(amount: $amount, number: $number) {
+        mutation withdrawToCard($amount: Float!) {
+          withdrawToCard(amount: $amount) {
             id
           }
         }
       `,
       variables: {
         amount,
-        number,
       },
     })
 
@@ -78,6 +77,20 @@ export function sentToCard() {
     })
 
     dispatch(loadHistory(true))
+
+    const { data } = await client.query({
+      forceFetch: true,
+      query: gql`
+        query {
+          user {
+            balance
+            referalBalance
+          }
+        }
+      `,
+    })
+
+    dispatch(updateUser(data.user))
 
     return null
   }
@@ -93,7 +106,7 @@ export function changeBitcoin(field, value) {
 
 export function sentToBitcoin() {
   return async (dispatch, getState, client) => {
-    const { amount, number } = getState().money.transfer.external.bitcoin
+    const { amount } = getState().money.transfer.external.bitcoin
     const { balance } = getState().user
 
     const value = parseFloat(amount)
@@ -120,28 +133,16 @@ export function sentToBitcoin() {
       return null
     }
 
-    if (!WAValidator.validate(number)) {
-      dispatch({
-        type: actions.setLocalErrors,
-        errors: {
-          number: 'Невалидный номер счета',
-        },
-      })
-
-      return null
-    }
-
     await client.mutate({
       mutation: gql`
-        mutation withdrawToBitcoin($amount: Float!, $number: String!) {
-          withdrawToBitcoin(amount: $amount, number: $number) {
+        mutation withdrawToBitcoin($amount: Float!) {
+          withdrawToBitcoin(amount: $amount) {
             id
           }
         }
       `,
       variables: {
         amount,
-        number,
       },
     })
 
@@ -150,6 +151,20 @@ export function sentToBitcoin() {
     })
 
     dispatch(loadHistory(true))
+
+    const { data } = await client.query({
+      forceFetch: true,
+      query: gql`
+        query {
+          user {
+            balance
+            referalBalance
+          }
+        }
+      `,
+    })
+
+    dispatch(updateUser(data.user))
 
     return null
   }

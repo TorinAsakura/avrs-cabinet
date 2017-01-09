@@ -25,6 +25,8 @@ export function init() {
             referals
             status
             createdAt
+            cardNumber
+            btcAddress
             sponsor {
               id
               firstName

@@ -1,3 +1,5 @@
 export const sync = '@@avrs-cabinet/profile/SYNC'
 export const changeGeneral = '@@avrs-cabinet/profile/general/CHANGE'
 export const setErrors = '@@avrs-cabinet/profile/general/SET_ERRORS'
+export const changeWithdraw = '@@avrs-cabinet/profile/withdraw/CHANGE'
+export const setWithdrawErrors = '@@avrs-cabinet/profile/withdraw/SET_ERRORS'

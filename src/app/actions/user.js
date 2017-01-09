@@ -17,8 +17,10 @@ export function logout() {
       type: actions.clear,
     })
 
-    if (getState().router.location.pathname.indexOf('/auth') !== 0) {
+    if (getState().router && getState().router.location.pathname.indexOf('/auth') !== 0) {
       window.location.href = '/auth/login'
+    } else {
+      window.location.reload()
     }
   }
 }
